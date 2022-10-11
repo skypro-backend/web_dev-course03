@@ -22,11 +22,15 @@
     <script>
         const button = document.getElementById('button');
 
+        const input = document.getElementById('input');
+
         console.log(button.textContent);
 
         button.onclick = function () {
 
             button.textContent = 'Я кнопка, которой поменяли надпись';
+
+            input.value = 'Это значение не мое, мне его через джаваскрипт подкинули';
         }
     </script>
 </body>
