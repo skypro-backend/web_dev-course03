@@ -24,7 +24,10 @@
 
         console.log(button.textContent);
 
-        button.textContent = 'Я кнопка, которой поменяли надпись';
+        button.onclick = function () {
+
+            button.textContent = 'Я кнопка, которой поменяли надпись';
+        }
     </script>
 </body>
 
