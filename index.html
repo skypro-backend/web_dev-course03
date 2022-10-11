@@ -54,7 +54,11 @@
 
         button.onclick = function () {
 
-            console.log(button.dataset.clicks);
+            let clicks = Number(button.dataset.clicks);
+
+            clicks += 1;
+
+            button.dataset.clicks = clicks;
         }
     </script>
 </body>
