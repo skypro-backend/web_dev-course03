@@ -1,1 +1,3 @@
-# web_dev-course03
+# Курс 3. JavaScript в Браузере. 
+
+Код с занятий
