@@ -20,13 +20,15 @@
     <input id="input">
     <button id="button">Я учебная кнопка!</button>
     <img id="logo" src="https://cdn-user53347.skyeng.ru/assets/images/core/layout/header/skyeng-logo.svg">
-    <a href="https://sky.pro">Учиться здесь</a>
+    <a id="link" href="https://sky.pro">Учиться здесь</a>
     <script>
         const button = document.getElementById('button');
 
         const input = document.getElementById('input');
 
         const logo = document.getElementById('logo');
+
+        const link = document.getElementById('link');
 
         console.log(logo.src);
 
@@ -37,9 +39,7 @@
 
         button.onclick = function () {
 
-            button.textContent = 'Я кнопка, которой поменяли надпись';
-
-            input.value = 'Это значение не мое, мне его через джаваскрипт подкинули';
+            console.log(link.href);
         }
     </script>
 </body>
