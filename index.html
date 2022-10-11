@@ -19,14 +19,16 @@
     <p>Помогаем выбрать профессию, в которой вы добьетесь наилучших результатов.</p>
     <input id="input">
     <button id="button">Я учебная кнопка!</button>
-    <img src="https://cdn-user53347.skyeng.ru/assets/images/core/layout/header/skyeng-logo.svg">
+    <img id="logo" src="https://cdn-user53347.skyeng.ru/assets/images/core/layout/header/skyeng-logo.svg">
     <a href="https://sky.pro">Учиться здесь</a>
     <script>
         const button = document.getElementById('button');
 
         const input = document.getElementById('input');
 
-        console.log(button.textContent);
+        const logo = document.getElementById('logo');
+
+        console.log(logo.src);
 
         button.onclick = function () {
 
