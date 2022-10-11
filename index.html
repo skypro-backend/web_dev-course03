@@ -14,6 +14,12 @@
         .error {
             background-color: lightcoral;
         }
+
+        .progress {
+            width: 0;
+            height: 40px;
+            background-color: blueviolet;
+        }
     </style>
 </head>
 
@@ -23,6 +29,7 @@
     <p>Помогаем выбрать профессию, в которой вы добьетесь наилучших результатов.</p>
     <input id="input" value="Заранее подготовленное значение">
     <button id="button">Я учебная кнопка!</button>
+    <div id="progress" class="progress"></div>
     <img id="logo" src="https://cdn-user53347.skyeng.ru/assets/images/core/layout/header/skyeng-logo.svg">
     <a id="link" href="https://sky.pro">Учиться здесь</a>
     <script>
@@ -34,6 +41,8 @@
 
         const link = document.getElementById('link');
 
+        const progress = document.getElementById('progress');
+
         console.log(logo.src);
 
         logo.onclick = function () {
@@ -41,13 +50,17 @@
             logo.src = 'https://static.tildacdn.com/tild6462-3339-4239-b365-356630303531/Group_18539.svg';
         }
 
+        let totalProgress = 0;
+
         button.onclick = function () {
 
-            button.textContent = 'Тревога!';
+            const delta = Math.floor(Math.random() * 10);
 
-            button.classList.add('error');
+            totalProgress += delta;
 
-            // button.style.backgroundColor = 'lightcoral';
+            if (totalProgress > 100) totalProgress = 100;
+
+            console.log(totalProgress);
         }
     </script>
 </body>
