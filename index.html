@@ -28,7 +28,7 @@
     <h2>Даем навыки, которые востребованы</h2>
     <p>Помогаем выбрать профессию, в которой вы добьетесь наилучших результатов.</p>
     <input id="input" value="Заранее подготовленное значение">
-    <button id="button">Я учебная кнопка!</button>
+    <button id="button" data-clicks="0">Ура, по мне ещё не кликали</button>
     <div id="progress" class="progress"></div>
     <img id="logo" src="https://cdn-user53347.skyeng.ru/assets/images/core/layout/header/skyeng-logo.svg">
     <a id="link" href="https://sky.pro">Учиться здесь</a>
@@ -54,13 +54,7 @@
 
         button.onclick = function () {
 
-            const delta = Math.floor(Math.random() * 10);
-
-            totalProgress += delta;
-
-            if (totalProgress > 100) totalProgress = 100;
-
-            progress.style.width = totalProgress + '%';
+            console.log(button.dataset.clicks);
         }
     </script>
 </body>
