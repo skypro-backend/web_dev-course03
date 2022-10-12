@@ -25,6 +25,18 @@
 
             location.reload();
         }
+
+        const params = {};
+
+        const pairs = location.search.slice(1).split('&');
+
+        for (const pair of pairs) {
+
+            const keyValue = pair.split('=');
+
+            params[keyValue[0]] = keyValue[1];
+        }
+        console.log(params);
     </script>
 </body>
 
