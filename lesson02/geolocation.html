@@ -15,8 +15,17 @@
 
 <body>
     <h1>Browser Object Model (Web API)</h1>
+    <button id="geo-button">Определить геолокацию</button>
     <script>
-        console.log(navigator);
+        const geoButton = document.getElementById('geo-button');
+
+        geoButton.onclick = function () {
+
+            navigator.geolocation.getCurrentPosition(function (data) {
+
+                console.log(data);
+            });
+        }
     </script>
 </body>
 
