@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .error {
+            background-color: lightcoral;
+        }
+
+        .progress {
+            width: 0;
+            height: 40px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Освойте новую профессию и улучшите качество жизни</h1>
+    <h2>Даем навыки, которые востребованы</h2>
+    <p>Помогаем выбрать профессию, в которой вы добьетесь наилучших результатов.</p>
+    <input id="input" value="Заранее подготовленное значение">
+    <button id="button" data-clicks="0">Ура, по мне ещё не кликали</button>
+    <div id="progress" class="progress"></div>
+    <img id="logo" src="https://cdn-user53347.skyeng.ru/assets/images/core/layout/header/skyeng-logo.svg">
+    <a id="link" href="https://sky.pro">Учиться здесь</a>
+    <script>
+        const button = document.getElementById('button');
+
+        const input = document.getElementById('input');
+
+        const logo = document.getElementById('logo');
+
+        const link = document.getElementById('link');
+
+        const progress = document.getElementById('progress');
+
+        console.log(logo.src);
+
+        logo.onclick = function () {
+
+            logo.src = 'https://static.tildacdn.com/tild6462-3339-4239-b365-356630303531/Group_18539.svg';
+        }
+
+        let totalProgress = 0;
+
+        button.onclick = function () {
+
+            let clicks = Number(button.dataset.clicks);
+
+            clicks += 1;
+
+            button.dataset.clicks = clicks;
+
+            button.textContent = `О нет, по мне кликнули ${clicks} раз`;
+        }
+    </script>
+</body>
+
+</html>
