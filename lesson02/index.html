@@ -15,8 +15,16 @@
 
 <body>
     <h1>Browser Object Model (Web API)</h1>
+    <button id="refresh-button">Обновить страницу немедленно</button>
     <script>
         console.log(location);
+
+        const refreshButton = document.getElementById('refresh-button');
+
+        refreshButton.onclick = function () {
+
+            location.reload();
+        }
     </script>
 </body>
 
