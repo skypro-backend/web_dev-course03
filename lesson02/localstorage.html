@@ -16,7 +16,17 @@
 <body>
     <h1>Browser Object Model (Web API)</h1>
     <script>
-        console.log(localStorage);
+        let username = localStorage.getItem('username');
+
+        if (!username) {
+
+            username = prompt('Имя пользователя, пожалуйста');
+
+            if (username) {
+
+                localStorage.setItem('username', username);
+            }
+        }
     </script>
 </body>
 
