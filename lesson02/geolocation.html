@@ -19,11 +19,22 @@
     <script>
         const geoButton = document.getElementById('geo-button');
 
+        function showCoords(lat, lng) {
+
+            console.log(lat, lng);
+        }
+
         geoButton.onclick = function () {
 
             navigator.geolocation.getCurrentPosition(function (data) {
 
                 console.log(data);
+
+                const latitude = data.coords.latitude;
+
+                const longitude = data.coords.longitude;
+
+                showCoords(latitude, longitude);
             });
         }
     </script>
