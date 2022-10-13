@@ -25,14 +25,16 @@
 
 <body>
     <h1>Document Object Model</h1>
-    <button class="button">Я кнопка, которая переезжает на классы</button>
-    <button class="button">Я другая кнопка, которая переезжает на классы</button>
+    <button class="button" data-clicks="0">Я кнопка, которая переезжает на классы</button>
+    <button class="button" data-clicks="0">Я другая кнопка, которая переезжает на классы</button>
     <script>
         const buttons = document.getElementsByClassName('button');
 
         function buttonClickHandler() {
 
             console.log('Это клик по какой-то кнопке');
+
+            console.log(this);
         }
 
         for (const button of buttons) {
