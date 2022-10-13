@@ -30,9 +30,9 @@
     <script>
         const buttons = document.getElementsByClassName('button');
 
-        for (let i = 0; i < buttons.length; i++) {
+        for (const button of buttons) {
 
-            console.log(buttons[i].textContent);
+            console.log(button.textContent);
         }
     </script>
 </body>
