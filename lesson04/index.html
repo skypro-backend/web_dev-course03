@@ -41,6 +41,8 @@
 
             const frontendAreYouSure = frontendClose.previousElementSibling;
 
+            frontendAreYouSure.classList.remove('frontend__are-you-sure_hidden');
+
             frontendClose.remove();
 
             console.log(frontendAreYouSure);
