@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .button {
+            padding: 8px 4px;
+            border: 1px solid black;
+            border-radius: 3px;
+        }
+
+        .promo_active {
+            background: #fc0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Document Object Model</h1>
+    <button class="button count-button promo" data-clicks="0">Я кнопка, которая переезжает на классы</button>
+    <button class="button count-button" data-clicks="0">Я другая кнопка, которая переезжает на классы</button>
+    <button class="button promo count-button" data-clicks="0">Я активная кнопка</button>
+    <button class="button promo">Я призывающая кнопка</button>
+    <script>
+        const countButtons = document.getElementsByClassName('count-button');
+
+        function countButtonClickHandler() {
+
+            console.log('Это клик по какой-то кнопке');
+
+            console.log(this);
+
+            let clicks = +this.dataset.clicks;
+
+            clicks += 1;
+
+            console.log(clicks);
+
+            this.dataset.clicks = clicks;
+        }
+
+        for (const countButton of countButtons) {
+
+            countButton.onclick = countButtonClickHandler;
+        }
+
+        const promoButtons = document.getElementsByClassName('promo');
+
+        function promoButtonEnterHandler() {
+
+            this.classList.add('promo_active');
+        }
+
+        console.log(promoButtons);
+
+        for (const promoButton of promoButtons) {
+
+            console.log('promo for');
+
+            promoButton.onmouseenter = promoButtonEnterHandler;
+        }
+    </script>
+</body>
+
+</html>
