@@ -25,9 +25,9 @@
 
 <body>
     <h1>Document Object Model</h1>
-    <button id="button">Я кнопка, которая переезжает на классы</button>
+    <button class="button">Я кнопка, которая переезжает на классы</button>
     <script>
-        const button = document.getElementById('button');
+        const button = document.getElementsByClassName('button')[0];
 
         button.onclick = function () {
 
