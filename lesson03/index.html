@@ -25,12 +25,14 @@
 
 <body>
     <h1>Document Object Model</h1>
-    <button class="button" data-clicks="0">Я кнопка, которая переезжает на классы</button>
-    <button class="button" data-clicks="0">Я другая кнопка, которая переезжает на классы</button>
+    <button class="button count-button" data-clicks="0">Я кнопка, которая переезжает на классы</button>
+    <button class="button count-button" data-clicks="0">Я другая кнопка, которая переезжает на классы</button>
+    <button class="button promo">Я активная кнопка</button>
+    <button class="button promo">Я призывающая кнопка</button>
     <script>
-        const buttons = document.getElementsByClassName('button');
+        const countButtons = document.getElementsByClassName('count-button');
 
-        function buttonClickHandler() {
+        function countButtonClickHandler() {
 
             console.log('Это клик по какой-то кнопке');
 
@@ -45,9 +47,25 @@
             this.dataset.clicks = clicks;
         }
 
-        for (const button of buttons) {
+        for (const countButton of countButtons) {
 
-            button.onclick = buttonClickHandler;
+            countButton.onclick = countButtonClickHandler;
+        }
+
+        const promoButtons = document.getElementsByClassName('promo');
+
+        function promoButtonEnterHandler() {
+
+            this.classList.add('promo_active');
+        }
+
+        console.log(promoButtons);
+
+        for (const promoButton of promoButtons) {
+
+            console.log('promo for');
+
+            promoButton.onmouseenter = promoButtonEnterHandler;
         }
     </script>
 </body>
