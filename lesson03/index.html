@@ -35,6 +35,14 @@
             console.log('Это клик по какой-то кнопке');
 
             console.log(this);
+
+            let clicks = +this.dataset.clicks;
+
+            clicks += 1;
+
+            console.log(clicks);
+
+            this.dataset.clicks = clicks;
         }
 
         for (const button of buttons) {
