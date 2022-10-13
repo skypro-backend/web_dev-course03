@@ -35,23 +35,11 @@
     <script>
         const frontendClose = document.querySelector('.frontend__close');
 
-        frontendClose.onclick = function () {
+        const frontend = document.querySelector('.frontend');
 
-            const frontend = frontendClose.parentElement;
+        for (const child of frontend.children) {
 
-            console.log('parent', frontend);
-
-            console.log('parent lastElementChild', frontend.lastElementChild);
-
-            console.log(frontendClose === frontend.lastElementChild);
-
-            console.log('parent lastElementChild', frontend.lastElementChild);
-
-            console.log('parent firstElementChild', frontend.firstElementChild);
-
-            console.log('frontendClose previousElementSibling', frontendClose.previousElementSibling);
-
-            console.log('frontendClose nextElementSibling', frontendClose.nextElementSibling);
+            console.log(child);
         }
     </script>
 </body>
