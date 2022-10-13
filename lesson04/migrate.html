@@ -30,7 +30,7 @@
     <button class="button promo count-button" data-clicks="0">Я активная кнопка</button>
     <button class="button promo">Я призывающая кнопка</button>
     <script>
-        const countButtons = document.getElementsByClassName('count-button');
+        const countButtons = document.querySelectorAll('.count-button');
 
         function countButtonClickHandler() {
 
@@ -52,7 +52,7 @@
             countButton.onclick = countButtonClickHandler;
         }
 
-        const promoButtons = document.getElementsByClassName('promo');
+        const promoButtons = document.querySelectorAll('.promo');
 
         function promoButtonEnterHandler() {
 
