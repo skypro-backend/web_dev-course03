@@ -39,7 +39,9 @@
 
         frontendClose.onclick = function () {
 
-            const frontendAreYouSure = frontendClose.previousElementSibling;
+            const frontendBlock = frontendClose.parentElement;
+
+            const frontendAreYouSure = frontendBlock.querySelector('.frontend__are-you-sure');
 
             frontendAreYouSure.classList.remove('frontend__are-you-sure_hidden');
 
