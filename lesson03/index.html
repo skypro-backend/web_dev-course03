@@ -30,10 +30,12 @@
     <script>
         const buttons = document.getElementsByClassName('button');
 
-        for (const button of buttons) {
+        const buttonsArray = Array.from(buttons);
+
+        buttonsArray.forEach(button => {
 
             console.log(button.textContent);
-        }
+        });
     </script>
 </body>
 
