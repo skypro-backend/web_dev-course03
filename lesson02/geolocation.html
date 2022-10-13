@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Browser Object Model (Web API)</h1>
+    <button id="geo-button">Определить геолокацию</button>
+    <script>
+        const geoButton = document.getElementById('geo-button');
+
+        function showCoords(lat, lng) {
+
+            console.log(lat, lng);
+        }
+
+        geoButton.onclick = function () {
+
+            navigator.geolocation.getCurrentPosition(function (data) {
+
+                console.log(data);
+
+                const latitude = data.coords.latitude;
+
+                const longitude = data.coords.longitude;
+
+                showCoords(latitude, longitude);
+            });
+        }
+    </script>
+</body>
+
+</html>
