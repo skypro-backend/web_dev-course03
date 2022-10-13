@@ -32,7 +32,14 @@
         </div>
         <button class="frontend__close">Закрыть</button>
     </article>
+    <script>
+        const frontendClose = document.querySelector('.frontend__close');
 
+        frontendClose.onclick = function () {
+
+            console.log(frontendClose.parentElement);
+        }
+    </script>
 </body>
 
 </html>
