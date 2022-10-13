@@ -30,12 +30,14 @@
     <script>
         const buttons = document.getElementsByClassName('button');
 
+        function buttonClickHandler() {
+
+            console.log('Это клик по какой-то кнопке');
+        }
+
         for (const button of buttons) {
 
-            button.onclick = function () {
-
-                console.log('Это клик по какой-то кнопке');
-            }
+            button.onclick = buttonClickHandler;
         }
     </script>
 </body>
