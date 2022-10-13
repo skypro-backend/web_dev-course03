@@ -37,7 +37,11 @@
 
         frontendClose.onclick = function () {
 
-            console.log(frontendClose.parentElement);
+            const frontend = frontendClose.parentElement;
+
+            console.log('parent', frontend);
+
+            console.log('parent lastElementChild', frontend.lastElementChild);
         }
     </script>
 </body>
