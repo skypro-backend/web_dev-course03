@@ -26,13 +26,13 @@
 <body>
     <h1>Document Object Model</h1>
     <button class="button">Я кнопка, которая переезжает на классы</button>
-    <button class="button">Я кнопка, которая переезжает на классы</button>
+    <button class="button">Я другая кнопка, которая переезжает на классы</button>
     <script>
-        const button = document.getElementsByClassName('button')[0];
+        const buttons = document.getElementsByClassName('button');
 
-        button.onclick = function () {
+        for (let i = 0; i < buttons.length; i++) {
 
-            console.log('Это точно клик, я видел');
+            console.log(buttons[i].textContent);
         }
     </script>
 </body>
