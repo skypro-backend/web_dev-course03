@@ -30,12 +30,13 @@
     <script>
         const buttons = document.getElementsByClassName('button');
 
-        const buttonsArray = Array.from(buttons);
+        for (const button of buttons) {
 
-        buttonsArray.forEach(button => {
+            button.onclick = function () {
 
-            console.log(button.textContent);
-        });
+                console.log('Это клик по какой-то кнопке');
+            }
+        }
     </script>
 </body>
 
