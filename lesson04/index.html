@@ -33,22 +33,17 @@
         <button class="frontend__close">Закрыть</button>
     </article>
     <script>
-        const frontendClose = document.querySelector('.frontend__close');
-
         const frontend = document.querySelector('.frontend');
 
-        for (const child of frontend.children) {
+        const frontendClose = frontend.querySelector('.frontend__close');
 
-            console.log(child);
-        }
+        frontendClose.onclick = function () {
 
-        let child = frontend.firstElementChild;
+            frontendClose.remove();
 
-        while (child) {
+            const frontendAreYouSure = frontendClose.previousElementSibling;
 
-            console.log(child);
-
-            child = child.nextElementSibling;
+            console.log(frontendAreYouSure);
         }
     </script>
 </body>
