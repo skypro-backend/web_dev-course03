@@ -17,9 +17,9 @@
     <main class="app">
         <h1 class="app__title">Шаблонизация</h1>
         <section class="app__animal-wrapper">
-            <h3 class="app__first">Первый</h3>
-            <h3 class="app__second">Второй</h3>
-            <h3 class="app__third">Третий</h3>
+            <h3 class="app__subtitle app__first">Первый</h3>
+            <h3 class="app__subtitle app__second">Второй</h3>
+            <h3 class="app__subtitle app__third">Третий</h3>
         </section>
     </main>
     <script>
@@ -50,7 +50,7 @@
 
         const appFirst = appAnimalWrapper.querySelector('.app__first');
 
-        const appSecond = appAnimalWrapper.querySelector('.app__second')
+        const appSecond = appAnimalWrapper.querySelector('.app__second');
 
         const appAnimalImage = document.createElement('img');
 
@@ -58,7 +58,19 @@
 
         appAnimalImage.classList.add('app__animal-image');
 
-        appAnimalWrapper.insertBefore(appAnimalImage, appSecond);
+        const appSubtitles = document.querySelectorAll('.app__subtitle');
+
+        appSubtitles.forEach(subtitle => {
+
+            subtitle.onclick = function () {
+
+                const target = this;
+
+                const parent = target.parentElement;
+
+                parent.insertBefore(appAnimalImage, target);
+            }
+        });
     </script>
 </body>
 
