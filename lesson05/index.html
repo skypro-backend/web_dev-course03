@@ -6,10 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .animal__image {
+            max-width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Шаблонизация</h1>
+    <main class="app">
+        <h1>Шаблонизация</h1>
+        <div class="animal">
+        </div>
+    </main>
     <script>
         const apiData = `
         {
@@ -30,7 +39,13 @@
         }
             `;
 
-        console.log(apiData);
+        const data = JSON.parse(apiData);
+
+        const animal = document.querySelector('.animal');
+
+        animal.innerHTML = `
+            <img class="animal__image" src="${data.image_link}"/>
+            `;
     </script>
 </body>
 
