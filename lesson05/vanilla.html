@@ -60,16 +60,18 @@
 
         const appSubtitles = document.querySelectorAll('.app__subtitle');
 
+        function handleAppSubtitleClick() {
+
+            const target = this;
+
+            const parent = target.parentElement;
+
+            parent.insertBefore(appAnimalImage, target.nextElementSibling);
+        }
+
         appSubtitles.forEach(subtitle => {
 
-            subtitle.onclick = function () {
-
-                const target = this;
-
-                const parent = target.parentElement;
-
-                parent.insertBefore(appAnimalImage, parent.firstElementChild);
-            }
+            subtitle.onclick = handleAppSubtitleClick;
         });
     </script>
 </body>
