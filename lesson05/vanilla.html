@@ -68,8 +68,12 @@
 
             const parent = target.parentElement;
 
-            parent.insertBefore(appAnimalImage, target.nextElementSibling);
-            parent.insertBefore(appAnimalName, appAnimalImage.nextElementSibling);
+            const fragment = document.createDocumentFragment();
+
+            fragment.appendChild(appAnimalImage);
+            fragment.appendChild(appAnimalName);
+
+            parent.insertBefore(fragment, target.nextElementSibling);
         }
 
         appSubtitles.forEach(subtitle => {
