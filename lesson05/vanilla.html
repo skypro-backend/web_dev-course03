@@ -46,13 +46,17 @@
 
         const app = document.querySelector('.app');
 
+        const appAnimalWrapper = app.querySelector('.app__animal-wrapper');
+
+        const appFirst = appAnimalWrapper.querySelector('.app__first')
+
         const appAnimalImage = document.createElement('img');
 
         appAnimalImage.src = data.image_link;
 
         appAnimalImage.classList.add('app__animal-image');
 
-        app.appendChild(appAnimalImage);
+        appAnimalWrapper.insertBefore(appAnimalImage, appFirst);
     </script>
 </body>
 
