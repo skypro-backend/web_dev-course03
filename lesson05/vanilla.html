@@ -58,6 +58,8 @@
 
         appAnimalImage.classList.add('app__animal-image');
 
+        const appAnimalName = document.createTextNode(data.name);
+
         const appSubtitles = document.querySelectorAll('.app__subtitle');
 
         function handleAppSubtitleClick() {
@@ -67,6 +69,7 @@
             const parent = target.parentElement;
 
             parent.insertBefore(appAnimalImage, target.nextElementSibling);
+            parent.insertBefore(appAnimalName, appAnimalImage.nextElementSibling);
         }
 
         appSubtitles.forEach(subtitle => {
