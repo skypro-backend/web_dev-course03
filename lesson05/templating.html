@@ -77,6 +77,67 @@
 
         console.log(photos);
 
+        function photoVanillaTemplate(photo) {
+
+            const result = document.createElement('article');
+
+            result.classList.add('photo');
+
+            const photoImage = document.createElement('div');
+
+            photoImage.classList.add('photo__image');
+
+            photoImage.style.backgroundImage = `url(${photo.urls.small})`;
+
+            result.appendChild(photoImage);
+
+            const photoInfo = document.createElement('footer');
+
+            photoInfo.classList.add('photo__info');
+
+            result.appendChild(photoInfo);
+
+            const photoUser = document.createElement('div');
+
+            photoUser.classList.add('photo__user');
+
+            photoInfo.appendChild(photoUser);
+
+            const photoUserAvatar = document.createElement('img');
+
+            photoUserAvatar.classList.add('photo_user-avatar');
+
+            photoUserAvatar.src = photo.user.profile_image.small;
+
+            photoUser.appendChild(photoUserAvatar);
+
+            const photoUserName = document.createElement('div');
+
+            photoUserName.classList.add('photo_user-name');
+
+            photoUserName.textContent = photo.user.name;
+
+            photoUser.appendChild(photoUserName);
+
+            const photoLikes = document.createElement('span');
+
+            photoLikes.classList.add('photo__likes');
+
+            photoInfo.appendChild(photoLikes);
+
+            const likes = document.createTextNode(photo.likes);
+
+            photoLikes.appendChild(likes);
+
+            const photoHeart = document.createElement('i');
+
+            photoHeart.classList.add('photo__heart', 'fa', 'fa-heart');
+
+            photoLikes.appendChild(photoHeart);
+
+            return result;
+        }
+
         function photoStringTemplate(photo) {
             return `
             <article class="photo">
@@ -99,6 +160,8 @@
         const gallery = document.querySelector('.gallery');
 
         gallery.innerHTML += photos.map(photoStringTemplate).join('');
+
+        gallery.appendChild(photoVanillaTemplate(photos[0]));
     </script>
 </body>
 
