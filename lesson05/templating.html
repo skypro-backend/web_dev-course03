@@ -161,7 +161,16 @@
 
         gallery.innerHTML += photos.map(photoStringTemplate).join('');
 
-        gallery.appendChild(photoVanillaTemplate(photos[0]));
+        const fragment = document.createDocumentFragment();
+
+        photos.forEach(photo => {
+
+            const photoElement = photoVanillaTemplate(photo);
+
+            fragment.appendChild(photoElement);
+        });
+
+        gallery.appendChild(fragment);
     </script>
 </body>
 
