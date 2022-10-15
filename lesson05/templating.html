@@ -19,6 +19,7 @@
             border: 1px solid black;
             border-radius: 8px;
             justify-content: space-between;
+            margin-bottom: 10px;
         }
 
         .photo__image {
@@ -75,6 +76,29 @@
         const photos = JSON.parse(photosData);
 
         console.log(photos);
+
+        function photoStringTemplate(photo) {
+            return `
+            <article class="photo">
+                <div class="photo__image"
+                    style="background-image: url(${photo.urls.small})">
+                </div>
+                <footer class="photo__info">
+                    <div class="photo__user">
+                        <img class="photo_user-avatar"
+                            src="${photo.user.profile_image.small}"
+                            alt="avatar">
+                        <div class="photo__user-name">${photo.user.name}</div>
+                    </div>
+                    <span class="photo__likes">${photo.likes}<i class="photo__heart fa fa-heart"></i></span>
+                </footer>
+            </article>
+            `;
+        }
+
+        const gallery = document.querySelector('.gallery');
+
+        gallery.innerHTML += photoStringTemplate(photos[0]);
     </script>
 </body>
 
