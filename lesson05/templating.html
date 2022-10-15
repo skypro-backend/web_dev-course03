@@ -98,7 +98,7 @@
 
         const gallery = document.querySelector('.gallery');
 
-        gallery.innerHTML += photoStringTemplate(photos[0]);
+        gallery.innerHTML += photos.map(photoStringTemplate).join('');
     </script>
 </body>
 
