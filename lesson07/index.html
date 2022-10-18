@@ -45,8 +45,24 @@
             Пока вы смотрите видео, я клики считаю:
             <span class="count-button__counter">0</span>
         </button>
+        <h3 class="inline-edit">Заголовок</h3>
     </main>
     <script>
+        const inlineEdit = document.querySelector('.inline-edit');
+
+        inlineEdit.onclick = function (event) {
+
+            const target = event.target;
+
+            const input = document.createElement('input');
+            input.value = target.textContent;
+
+            target.innerHTML = '';
+            target.appendChild(input);
+
+            input.focus();
+        }
+
         const countButtons = document.querySelectorAll('.count-button');
 
         const handlerCountButtonClick = (event) => {
@@ -66,7 +82,6 @@
         countButtons.forEach(countButton => {
             countButton.onclick = handlerCountButtonClick;
         });
-
 
         const eventButton = document.querySelector('.event-button');
         eventButton.onclick = function (event) {
