@@ -67,15 +67,25 @@
         </div>
     </main>
     <script>
-        const inlineEdit = document.querySelector('.inline-edit');
+        const upload = document.querySelector('.upload');
+        upload.onclick = (event) => {
 
+            const target = event.target;
+
+            const control = target.querySelector('.upload__control');
+
+            if (control) {
+                control.click();
+            }
+        }
+
+        const inlineEdit = document.querySelector('.inline-edit');
         inlineEdit.onclick = function (event) {
 
             const target = event.target;
 
             const input = document.createElement('input');
             input.value = target.textContent;
-
             target.innerHTML = '';
             target.appendChild(input);
 
