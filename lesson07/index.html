@@ -25,11 +25,17 @@
             border-radius: 50%;
             background: lightcoral;
         }
+
+        .content_hidden {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
     <main class="click-tracker">
+        <a href="https://sky.pro" class="pseudo-link">Я тренировочная ссылка</a>
+        <div class="content content_hidden">Освойте конкретные навыки и ускорьте карьерный рост</div>
         <button class="event-button">Самое важное событие этой недели...</button>
     </main>
     <script>
@@ -51,7 +57,19 @@
             clickTracker.appendChild(spot);
 
             spot.style.top = (y - 1) + 'px';
+
             spot.style.left = (x - 1) + 'px';
+        }
+
+        const pseudoLink = document.querySelector('.pseudo-link');
+
+        const content = document.querySelector('.content');
+
+        pseudoLink.onclick = function (event) {
+
+            event.preventDefault();
+
+            content.classList.remove('content_hidden');
         }
     </script>
 </body>
