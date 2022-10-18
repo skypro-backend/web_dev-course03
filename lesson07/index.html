@@ -73,6 +73,10 @@
             height: 100px;
             background-color: goldenrod;
         }
+
+        .draggable_drag {
+            position: absolute;
+        }
     </style>
 </head>
 
@@ -80,7 +84,7 @@
     <main class="click-tracker">
         <a href="https://sky.pro" class="pseudo-link">Я тренировочная ссылка</a>
         <div class="content content_hidden">Освойте конкретные навыки и ускорьте карьерный рост</div>
-        <button class="event-button">Самое важное событие этой недели...</button>
+        <button class="event-button draggable">Самое важное событие этой недели...</button>
         <button class="count-button" data-clicks="0">
             Пока вы смотрите видео, я клики считаю:
             <span class="count-button__counter">0</span>
@@ -98,8 +102,19 @@
         </div>
     </main>
     <script>
-        const innerSquare = document.querySelector('.inner-square');
+        const draggables = document.querySelectorAll('.draggable');
 
+        function handleDragStart(event) {
+
+            const target = event.target;
+            target.classList.add('draggable_drag');
+        }
+
+        draggables.forEach(draggable => {
+            draggable.onmousedown = handleDragStart;
+        });
+
+        const innerSquare = document.querySelector('.inner-square');
         innerSquare.onmouseenter = function () {
 
             console.log('inner-square mouseenter');
@@ -121,7 +136,6 @@
         }
 
         const outerSquare = document.querySelector('.outer-square');
-
         outerSquare.onmouseenter = function () {
 
             console.log('outer-square mouseenter');
