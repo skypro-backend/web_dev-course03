@@ -37,8 +37,27 @@
         <a href="https://sky.pro" class="pseudo-link">Я тренировочная ссылка</a>
         <div class="content content_hidden">Освойте конкретные навыки и ускорьте карьерный рост</div>
         <button class="event-button">Самое важное событие этой недели...</button>
+        <button class="count-button" data-clicks="0">
+            Пока вы смотрите видео, я клики считаю:
+            <span class="count-button__counter">0</span>
+        </button>
     </main>
     <script>
+        const countButton = document.querySelector('.count-button');
+        countButton.onclick = function (event) {
+
+            const targetButton = event.target;
+
+            let clicks = Number(targetButton.dataset.clicks);
+
+            clicks += 1;
+
+            const counter = targetButton.querySelector('.count-button__counter');
+            counter.textContent = clicks;
+
+            targetButton.dataset.clicks = clicks;
+        }
+
         const eventButton = document.querySelector('.event-button');
         eventButton.onclick = function (event) {
 
