@@ -5,6 +5,7 @@ const template4 = { tag: 'div', content: 'Привет, шаблон!' }; // <di
 const template5 = { tag: 'div', content: ['Привет, шаблон!', { tag: 'div' }, undefined] }; // <div></div>
 const template6 = { tag: 'div', cls: 'test' }; // <div class="test"></div>
 const template7 = { tag: 'div', cls: ['test', 'test1', undefined] }; // <div class="test test1"></div>
+const template8 = { tag: 'a', attrs: { href: 'https://sky.pro' }, content: 'Учиться!' };
 
 function templateEngine(block) {
 
@@ -29,9 +30,19 @@ function templateEngine(block) {
     }
 
     const element = document.createElement(block.tag);
-    element.classList.add(
-        ...[].concat(block.cls).filter(Boolean)
-    );
+
+    if (block.cls) {
+        element.classList.add(
+            ...[].concat(block.cls).filter(Boolean)
+        );
+    }
+
+    if (block.attrs) {
+        const keys = Object.keys(block.attrs);
+        keys.forEach(key => { // href
+            element.setAttribute(key, block.attrs[key]);
+        });
+    }
 
     const content = templateEngine(block.content);
     element.appendChild(content);
@@ -46,3 +57,4 @@ containter.appendChild(templateEngine(template4));
 containter.appendChild(templateEngine(template5));
 containter.appendChild(templateEngine(template6));
 containter.appendChild(templateEngine(template7));
+containter.appendChild(templateEngine(template8));
