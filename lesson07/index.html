@@ -136,6 +136,8 @@
 
         clickTracker.oncontextmenu = function (event) {
 
+            event.preventDefault();
+
             console.log('oncontextmenu');
 
             console.log(event);
