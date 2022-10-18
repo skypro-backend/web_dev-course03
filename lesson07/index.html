@@ -108,6 +108,11 @@
 
             const target = event.target;
             target.classList.add('draggable_drag');
+            document.body.appendChild(target);
+
+            target.style.top = event.pageY + 'px';
+
+            target.style.left = event.pageX + 'px';
         }
 
         draggables.forEach(draggable => {
