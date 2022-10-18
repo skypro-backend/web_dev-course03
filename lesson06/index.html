@@ -6,12 +6,99 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .photo__heart {
+            color: red;
+        }
+
+        .photo {
+            display: flex;
+            flex-flow: column nowrap;
+            width: 300px;
+            height: 260px;
+            border: 1px solid black;
+            border-radius: 8px;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .photo__image {
+            width: 100%;
+            height: 82%;
+            background-position: center;
+            background-size: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .photo__info {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            align-items: center;
+        }
+
+        .photo__user {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .photo__heart {
+            margin: 8px;
+        }
+
+        .photo_user-avatar {
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Шаблонизация</h1>
+    <section class="gallery">
+        <article class="photo">
+            <div class="photo__image"
+                style="background-image: url(https://images.unsplash.com/photo-1665716488176-8237eb4fdd35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNjA2MzJ8MHwxfGFsbHw5fHx8fHx8Mnx8MTY2NTc0NzE4Mg&ixlib=rb-1.2.1&q=80&w=400)">
+            </div>
+            <footer class="photo__info">
+                <div class="photo__user">
+                    <img class="photo_user-avatar"
+                        src="https://images.unsplash.com/profile-1661204650582-7769bbb34869image?ixlib=rb-1.2.1&crop=faces&fit=crop&w=32&h=32"
+                        alt="avatar">
+                    <div class="photo__user-name">Artem Artemov</div>
+                </div>
+                <span class="photo__likes">15<i class="photo__heart fa fa-heart"></i></span>
+            </footer>
+        </article>
+    </section>
     <div class="container"></div>
+    <script src="https://kit.fontawesome.com/80d0029610.js" crossorigin="anonymous"></script>
+    <script src="data.js"></script>
     <script src="templating.js"></script>
+    <script>
+        const photos = JSON.parse(photosData);
+
+        const gallery = document.querySelector('.gallery');
+
+        function photoStringTemplate(photo) {
+            return `
+            <article class="photo">
+                <div class="photo__image"
+                    style="background-image: url(${photo.urls.small})">
+                </div>
+                <footer class="photo__info">
+                    <div class="photo__user">
+                        <img class="photo_user-avatar"
+                            src="${photo.user.profile_image.small}"
+                            alt="avatar">
+                        <div class="photo__user-name">${photo.user.name}</div>
+                    </div>
+                    <span class="photo__likes">${photo.likes}<i class="photo__heart fa fa-heart"></i></span>
+                </footer>
+            </article>
+            `;
+        }
+    </script>
 </body>
 
 </html>
