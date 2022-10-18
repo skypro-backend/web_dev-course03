@@ -6,10 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .click-tracker {
+            position: relative;
+            height: 100%;
+        }
+
+        .click-tracker__spot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: lightcoral;
+        }
+    </style>
 </head>
 
 <body>
-    <main>
+    <main class="click-tracker">
         <button class="event-button">Самое важное событие этой недели...</button>
     </main>
     <script>
@@ -17,6 +37,21 @@
         eventButton.onclick = function (event) {
 
             console.log(event);
+        }
+
+        const clickTracker = document.querySelector('.click-tracker');
+        clickTracker.onclick = function (event) {
+
+            const x = event.offsetX;
+
+            const y = event.offsetY;
+
+            const spot = document.createElement('div');
+            spot.classList.add('click-tracker__spot');
+            clickTracker.appendChild(spot);
+
+            spot.style.top = (y - 1) + 'px';
+            spot.style.left = (x - 1) + 'px';
         }
     </script>
 </body>
