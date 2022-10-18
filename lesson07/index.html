@@ -134,6 +134,13 @@
             spot.style.left = (x - 1) + 'px';
         }
 
+        clickTracker.oncontextmenu = function (event) {
+
+            console.log('oncontextmenu');
+
+            console.log(event);
+        }
+
         const pseudoLink = document.querySelector('.pseudo-link');
 
         const content = document.querySelector('.content');
