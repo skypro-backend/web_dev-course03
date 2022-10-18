@@ -58,6 +58,21 @@
             top: -10000px;
             left: -10000px;
         }
+
+        .outer-square {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            background-color: cadetblue;
+        }
+
+        .inner-square {
+            width: 100px;
+            height: 100px;
+            background-color: goldenrod;
+        }
     </style>
 </head>
 
@@ -77,6 +92,9 @@
         <h3 class="inline-edit">Заголовок</h3>
         <div class="upload">
             <input class="upload__control" type="file">Загрузить!
+        </div>
+        <div class="outer-square">
+            <div class="inner-square"></div>
         </div>
     </main>
     <script>
