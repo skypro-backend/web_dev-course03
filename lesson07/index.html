@@ -98,8 +98,51 @@
         </div>
     </main>
     <script>
-        const upload = document.querySelector('.upload');
+        const innerSquare = document.querySelector('.inner-square');
 
+        innerSquare.onmouseenter = function () {
+
+            console.log('inner-square mouseenter');
+        }
+
+        innerSquare.onmouseleave = function () {
+
+            console.log('inner-square mouseleave');
+        }
+
+        innerSquare.onmouseover = function () {
+
+            console.log('inner-square mouseover');
+        }
+
+        innerSquare.onmouseout = function () {
+
+            console.log('inner-square mouseout');
+        }
+
+        const outerSquare = document.querySelector('.outer-square');
+
+        outerSquare.onmouseenter = function () {
+
+            console.log('outer-square mouseenter');
+        }
+
+        outerSquare.onmouseleave = function () {
+
+            console.log('outer-square mouseleave');
+        }
+
+        outerSquare.onmouseover = function () {
+
+            console.log('outer-square mouseover');
+        }
+
+        outerSquare.onmouseout = function () {
+
+            console.log('outer-square mouseout');
+        }
+
+        const upload = document.querySelector('.upload');
         upload.onclick = (event) => {
 
             const target = event.target;
