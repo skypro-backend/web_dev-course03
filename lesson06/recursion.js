@@ -6,7 +6,6 @@ function factorial(number) {
 
     const result = number * factorial(number - 1);
     return result;
-
 }
 
 // console.log(factorial(5));
