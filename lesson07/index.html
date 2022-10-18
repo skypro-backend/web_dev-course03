@@ -18,12 +18,25 @@
             height: 100%;
         }
 
-        .click-tracker__spot {
+        .click-tracker__spot_normal,
+        .click-tracker__spot_down,
+        .click-tracker__spot_up {
             position: absolute;
-            width: 3px;
-            height: 3px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
+        }
+
+        .click-tracker__spot_normal {
             background: lightcoral;
+        }
+
+        .click-tracker__spot_down {
+            background: lightseagreen;
+        }
+
+        .click-tracker__spot_up {
+            background: orange;
         }
 
         .content_hidden {
@@ -68,6 +81,7 @@
     </main>
     <script>
         const upload = document.querySelector('.upload');
+
         upload.onclick = (event) => {
 
             const target = event.target;
@@ -119,19 +133,43 @@
         }
 
         const clickTracker = document.querySelector('.click-tracker');
+
+        function leaveSpot(target, x, y, type) {
+
+            const spot = document.createElement('div');
+            spot.classList.add('click-tracker__spot_' + type);
+            target.appendChild(spot);
+
+            spot.style.top = (y - 3) + 'px';
+
+            spot.style.left = (x - 3) + 'px';
+        }
+
         clickTracker.onclick = function (event) {
 
             const x = event.offsetX;
 
             const y = event.offsetY;
 
-            const spot = document.createElement('div');
-            spot.classList.add('click-tracker__spot');
-            clickTracker.appendChild(spot);
+            leaveSpot(event.target, x, y, 'normal');
+        }
 
-            spot.style.top = (y - 1) + 'px';
+        clickTracker.onmousedown = function (event) {
 
-            spot.style.left = (x - 1) + 'px';
+            const x = event.offsetX;
+
+            const y = event.offsetY;
+
+            leaveSpot(event.target, x, y, 'down');
+        }
+
+        clickTracker.onmouseup = function (event) {
+
+            const x = event.offsetX;
+
+            const y = event.offsetY;
+
+            leaveSpot(event.target, x, y, 'up');
         }
 
         clickTracker.oncontextmenu = function (event) {
