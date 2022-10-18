@@ -3,6 +3,8 @@ const template2 = { tag: 'div', content: { tag: 'div' } }; // <div><div></div></
 const template3 = undefined;
 const template4 = { tag: 'div', content: 'Привет, шаблон!' }; // <div></div>
 const template5 = { tag: 'div', content: ['Привет, шаблон!', { tag: 'div' }, undefined] }; // <div></div>
+const template6 = { tag: 'div', cls: 'test' }; // <div class="test"></div>
+const template7 = { tag: 'div', cls: ['test', 'test1', undefined] }; // <div class="test test1"></div>
 
 function templateEngine(block) {
 
@@ -27,6 +29,10 @@ function templateEngine(block) {
     }
 
     const element = document.createElement(block.tag);
+    element.classList.add(
+        ...[].concat(block.cls).filter(Boolean)
+    );
+
     const content = templateEngine(block.content);
     element.appendChild(content);
     return element;
@@ -38,3 +44,5 @@ containter.appendChild(templateEngine(template2));
 containter.appendChild(templateEngine(template3));
 containter.appendChild(templateEngine(template4));
 containter.appendChild(templateEngine(template5));
+containter.appendChild(templateEngine(template6));
+containter.appendChild(templateEngine(template7));
