@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app__animal-image {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="app">
+        <h1 class="app__title">Шаблонизация</h1>
+        <section class="app__animal-wrapper">
+            <h3 class="app__subtitle app__first">Первый</h3>
+            <h3 class="app__subtitle app__second">Второй</h3>
+            <h3 class="app__subtitle app__third">Третий</h3>
+        </section>
+    </main>
+    <script>
+        const apiData = `
+        {
+            "name": "White-throated Monitor",
+            "latin_name": "Varanus albigularis",
+            "animal_type": "Reptile",
+            "active_time": "Diurnal",
+            "length_min": "3.3",
+            "length_max": "6",
+            "weight_min": "20",
+            "weight_max": "25",
+            "lifespan": "20",
+            "habitat": "Savanna",
+            "diet": "Birds, insects, snails, and invertebrates",
+            "geo_range": "Central and Southern Africa",
+            "image_link": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Rock_monitor%2C_Varanus_albigularis%2C_also_called_commonly_the_white-throated_monitor_or_leguaan._%2848206382456%29.jpg",
+            "id": 192
+        }
+            `;
+
+        const data = JSON.parse(apiData);
+
+        const app = document.querySelector('.app');
+
+        const appAnimalWrapper = app.querySelector('.app__animal-wrapper');
+
+        const appFirst = appAnimalWrapper.querySelector('.app__first');
+
+        const appSecond = appAnimalWrapper.querySelector('.app__second');
+
+        const appAnimalImage = document.createElement('img');
+
+        appAnimalImage.src = data.image_link;
+
+        appAnimalImage.classList.add('app__animal-image');
+
+        const appAnimalName = document.createTextNode(data.name);
+
+        const appSubtitles = document.querySelectorAll('.app__subtitle');
+
+        function handleAppSubtitleClick() {
+
+            const target = this;
+
+            const parent = target.parentElement;
+
+            const fragment = document.createDocumentFragment();
+
+            fragment.appendChild(appAnimalImage);
+
+            fragment.appendChild(appAnimalName);
+
+            parent.insertBefore(fragment, target.nextElementSibling);
+        }
+
+        appSubtitles.forEach(subtitle => {
+
+            subtitle.onclick = handleAppSubtitleClick;
+        });
+    </script>
+</body>
+
+</html>
