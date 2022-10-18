@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Рекурсия</h1>
+    <script>
+        function factorial(number) {
+
+            if (number === 1) {
+                return 1;
+            }
+
+            const result = number * factorial(number - 1);
+            return result;
+
+        }
+
+        console.log(factorial(5));
+    </script>
+</body>
+
+</html>
