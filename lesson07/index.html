@@ -29,6 +29,22 @@
         .content_hidden {
             display: none;
         }
+
+        .upload {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 3px lightskyblue dashed;
+            border-radius: 8px;
+            background-color: blanchedalmond;
+        }
+
+        .upload__control {
+            position: absolute;
+            top: -10000px;
+            left: -10000px;
+        }
     </style>
 </head>
 
@@ -46,6 +62,9 @@
             <span class="count-button__counter">0</span>
         </button>
         <h3 class="inline-edit">Заголовок</h3>
+        <div class="upload">
+            <input class="upload__control" type="file">Загрузить!
+        </div>
     </main>
     <script>
         const inlineEdit = document.querySelector('.inline-edit');
