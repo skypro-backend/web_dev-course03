@@ -104,15 +104,38 @@
     <script>
         const draggables = document.querySelectorAll('.draggable');
 
+        let draggingElement;
+
+        function handleDrag(event) {
+
+            draggingElement.style.top = event.pageY + 'px';
+
+            draggingElement.style.left = event.pageX + 'px';
+        }
+
+
+        function handleDragEnd(event) {
+
+            document.body.onmousemove = undefined;
+
+            draggingElement.onmouseup = undefined;
+
+            draggingElement = undefined;
+        }
+
         function handleDragStart(event) {
 
             const target = event.target;
             target.classList.add('draggable_drag');
             document.body.appendChild(target);
 
-            target.style.top = event.pageY + 'px';
+            document.body.onmousemove = handleDrag;
 
-            target.style.left = event.pageX + 'px';
+            draggingElement = target;
+
+            handleDrag(event);
+
+            target.onmouseup = handleDragEnd;
         }
 
         draggables.forEach(draggable => {
