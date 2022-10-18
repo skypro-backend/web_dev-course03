@@ -47,7 +47,7 @@
             margin: 8px;
         }
 
-        .photo_user-avatar {
+        .photo__user-avatar {
             border-radius: 50%;
         }
     </style>
@@ -62,7 +62,7 @@
             </div>
             <footer class="photo__info">
                 <div class="photo__user">
-                    <img class="photo_user-avatar"
+                    <img class="photo__user-avatar"
                         src="https://images.unsplash.com/profile-1661204650582-7769bbb34869image?ixlib=rb-1.2.1&crop=faces&fit=crop&w=32&h=32"
                         alt="avatar">
                     <div class="photo__user-name">Artem Artemov</div>
@@ -74,30 +74,69 @@
     <div class="container"></div>
     <script src="https://kit.fontawesome.com/80d0029610.js" crossorigin="anonymous"></script>
     <script src="data.js"></script>
-    <script src="templating.js"></script>
+    <script src="template-engine.js"></script>
     <script>
         const photos = JSON.parse(photosData);
 
         const gallery = document.querySelector('.gallery');
 
-        function photoStringTemplate(photo) {
-            return `
-            <article class="photo">
-                <div class="photo__image"
-                    style="background-image: url(${photo.urls.small})">
-                </div>
-                <footer class="photo__info">
-                    <div class="photo__user">
-                        <img class="photo_user-avatar"
-                            src="${photo.user.profile_image.small}"
-                            alt="avatar">
-                        <div class="photo__user-name">${photo.user.name}</div>
-                    </div>
-                    <span class="photo__likes">${photo.likes}<i class="photo__heart fa fa-heart"></i></span>
-                </footer>
-            </article>
-            `;
+        function photoEngineTemplate(photo) {
+
+            return {
+                tag: 'article',
+                cls: 'photo',
+                content: [
+                    {
+                        tag: 'div',
+                        cls: 'photo__image',
+                        attrs: {
+                            style: `background-image: url(${photo.urls.small})`,
+                        },
+                    },
+                    {
+                        tag: 'footer',
+                        cls: 'photo__info',
+                        content: [
+                            {
+                                tag: 'div',
+                                cls: 'photo__user',
+                                content: [
+                                    {
+                                        tag: 'img',
+                                        cls: 'photo__user-avatar',
+                                        attrs: {
+                                            src: photo.user.profile_image.small,
+                                        }
+                                    },
+                                    {
+                                        tag: 'div',
+                                        cls: 'photo__user-name',
+                                        content: photo.user.name,
+                                    }
+                                ]
+                            },
+                            {
+                                tag: 'span',
+                                cls: 'photo__likes',
+                                content: [
+                                    photo.likes,
+                                    ' ',
+                                    {
+                                        tag: 'i',
+                                        cls: ['photo__heart', 'fa', 'fa-heart'],
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
         }
+
+        gallery.appendChild(
+            templateEngine(photos.map(photoEngineTemplate))
+        );
+
     </script>
 </body>
 
