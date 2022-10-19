@@ -17,6 +17,15 @@
         const field = document.querySelector('.field');
 
         const fieldControl = document.querySelector('.field__control');
+        fieldControl.onkeydown = (event) => {
+
+            console.log('keydown');
+        }
+
+        fieldControl.onkeypress = (event) => {
+
+            console.log('keypress');
+        }
     </script>
 </body>
 
