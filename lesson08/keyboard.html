@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .message_hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,17 +18,31 @@
         <label for="phone">Телефон</label>
         +<input id="phone" class="field__control">
     </div>
+    <div class="message message_hidden">Номер сохранен</div>
     <script>
         const field = document.querySelector('.field');
-
         const fieldControl = document.querySelector('.field__control');
-        // fieldControl.onkeydown = (event) => {
+        const savedValue = localStorage.getItem('phone');
+        if (savedValue) {
+            fieldControl.value = savedValue;
+        }
 
-        // event.preventDefault();
+        const message = document.querySelector('.message');
 
-        // console.log('keydown');
-        // console.log(event);
-        // }
+        document.body.onkeydown = function (event) {
+
+            if (!((event.keyCode === 83) && ((event.metakey === true) || (event.ctrlKey === true)))) {
+                return;
+            }
+
+            event.preventDefault();
+
+            localStorage.setItem('phone', fieldControl.value);
+
+            console.log(event);
+
+            message.classList.remove('message_hidden');
+        }
 
         fieldControl.onkeypress = (event) => {
 
@@ -31,9 +50,6 @@
                 event.preventDefault();
                 return;
             }
-
-            // console.log('keypress');
-            // console.log(event);
         }
     </script>
 </body>
