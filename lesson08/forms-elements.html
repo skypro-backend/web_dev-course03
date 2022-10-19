@@ -42,6 +42,10 @@
             console.log('blur');
         }
 
+        category.onchange = function () {
+            console.log('change');
+        }
+
         const fieldSuggests = document.querySelectorAll('.field__suggest');
 
         function handleSuggestClick(event) {
