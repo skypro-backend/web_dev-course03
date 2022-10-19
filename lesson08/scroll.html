@@ -111,11 +111,13 @@
 Мы уже достигли 60% и всегда будем стремиться к 100%. Потому что мы работаем на вашу мечту: ставим цель, составляем личный план развития, даем быструю глубокую обратную связь — и с трудоустройством помогаем. Точно не дадим слиться.
 И все это чертовски сложные задачи, которые требуют фундаментального переосмысления.        
         `;
-        window.onscroll = function () {
+        const infinityScroll = document.querySelector('.infinity-scroll');
+
+        function shouldAddContent() {
             const body = document.body;
             const html = document.documentElement;
 
-            const height = Math.max(
+            const pageHeight = Math.max(
                 body.scrollHeight,
                 body.offsetHeight,
                 html.clientHeight,
@@ -123,11 +125,18 @@
                 html.offsetHeight,
             );
 
-            console.log('________');
-            console.log('height ', height);
-            console.log('window.scrollY ', window.scrollY);
+            const viewportHeight = Math.max(
+                document.documentElement.viewportHeight || 0,
+                window.innerHeight || 0
+            );
 
-            console.log('delta ', height - window.scrollY);
+            return pageHeight - window.scrollY < 2 * viewportHeight;
+        }
+
+        window.onscroll = function () {
+            while (shouldAddContent()) {
+                infinityScroll.appendChild(document.createTextNode(content));
+            }
         }
     </script>
 </body>
