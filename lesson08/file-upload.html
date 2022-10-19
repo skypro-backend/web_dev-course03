@@ -53,8 +53,20 @@
 
         uploadControl.oninput = (event) => {
             const control = event.target;
+            const files = control.files;
+            const file = files[0];
 
-            console.dir(control);
+            if (!file) {
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                console.log(event);
+            }
+
+            reader.readAsText(file);
         }
     </script>
 </body>
