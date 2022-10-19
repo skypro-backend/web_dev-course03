@@ -40,10 +40,45 @@
                 type="checkbox"
             >
         </div>
+        <div class="field form__field form__field_group-level">
+            <label>Уровень группы</label>
+            <label for="group-level-basic">Начальный</label>
+            <input
+                id="group-level-basic"
+                name="group-level"
+                class="field__control"
+                type="radio"
+            >
+            <label for="group-level-middle">Средний</label>
+            <input
+                id="group-level-middle"
+                name="group-level"
+                class="field__control"
+                type="radio"
+            >
+            <label for="group-level-advanced">Продвинутый</label>
+            <input
+                id="group-level-advanced"
+                name="group-level"
+                class="field__control"
+                type="radio"
+            >
+        </div>
         <button>Отправить</button>
     </form>
     <script>
         const form = document.querySelector('.form');
+
+        const groupLevelField = form.querySelector('.form__field_group-level');
+        const groupLevelFieldControls = groupLevelField.querySelectorAll('.field__control')
+
+        function handleRadioChange (event) {
+            console.log(event.target);
+        }
+
+        groupLevelFieldControls.forEach((control) => {
+            control.addEventListener('change', handleRadioChange);
+        });
 
         const groupTitleField = form.querySelector('.form__field_group-title');
         const groupTitleFieldControl = groupTitleField.querySelector('.field__control');
