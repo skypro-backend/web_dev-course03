@@ -17,7 +17,15 @@
         </div>
         <div class="field form__field form__field_group-count">
             <label for="group-count">Количество студентов</label>
-            <input id="group-count" name="group-count" class="field__control" type="number">
+            <input
+                id="group-count"
+                name="group-count"
+                class="field__control"
+                type="number"
+                max="100"
+                min="10"
+                step="5"
+            >
         </div>
         <button>Отправить</button>
     </form>
