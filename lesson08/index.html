@@ -117,18 +117,20 @@
 
             function handleDragEnd(event) {
 
-                document.body.onmousemove = undefined;
-                draggingElement.onmouseup = undefined;
+                document.body.removeEventListener('mousemove', handleDrag);
+                draggingElement.removeEventListener('mouseup', handleDragEnd);
                 draggingElement = undefined;
             }
 
             function handleDragStart(event) {
 
+                event.preventDefault();
+
                 const target = event.target;
 
                 target.classList.add('draggable_drag');
                 document.body.appendChild(target);
-                document.body.onmousemove = handleDrag;
+                document.body.addEventListener('mousemove', handleDrag);
                 draggingElement = target;
 
                 handleDrag(event);
@@ -138,14 +140,14 @@
 
 
             draggables.forEach(draggable => {
-                draggable.onmousedown = handleDragStart;
+                draggable.addEventListener('mousedown', handleDragStart);
             });
 
             const innerSquare = document.querySelector('.inner-square');
-            innerSquare.onmouseenter = function () {
+            innerSquare.addEventListener('mouseenter', function () {
 
                 console.log('inner-square mouseenter');
-            }
+            });
 
             innerSquare.onmouseleave = function () {
 
