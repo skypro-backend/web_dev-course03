@@ -17,8 +17,6 @@
                 id="group-title"
                 name="group-title"
                 class="field__control"
-                maxlength="32"
-                readonly
             >
         </div>
         <div class="field form__field form__field_group-count">
@@ -31,7 +29,15 @@
                 max="100"
                 min="10"
                 step="5"
-                disabled
+            >
+        </div>
+        <div class="field form__field form__field_group-agree">
+            <label for="group-agree">Согласен сдавать все домашки на отлично</label>
+            <input
+                id="group-agree"
+                name="group-agree"
+                class="field__control"
+                type="checkbox"
             >
         </div>
         <button>Отправить</button>
@@ -64,7 +70,7 @@
         groupCountFieldControl.addEventListener('input', (event) => {
             const target = event.target;
 
-            console.log(typeof target.value);
+            console.log(target.value);
             console.log('input');
         });
         groupCountFieldControl.addEventListener('change', () => {
@@ -74,6 +80,25 @@
             console.log('focus');
         });
         groupCountFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
+
+        const groupAgreeField = form.querySelector('.form__field_group-agree');
+        const groupAgreeFieldControl = groupAgreeField.querySelector('.field__control');
+
+        groupAgreeFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
+            console.log('input');
+        });
+        groupAgreeFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupAgreeFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupAgreeFieldControl.addEventListener('blur', () => {
             console.log('blur');
         });
     </script>
