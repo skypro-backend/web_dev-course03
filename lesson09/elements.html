@@ -67,10 +67,41 @@
                 value="advanced"
             >
         </div>
+        <div class="field form__field form__field_group-type">
+            <label for="group-type">Направление группы</label>
+            <select
+                id="group-type"
+                name="group-type"
+                class="field__control"
+            >
+                <option value="FD">Фронтенд разработка</option>
+                <option value="QA">Тестирование</option>
+                <option value="AD">Аналитика данных</option>
+            </select>
+        </div>
         <button>Отправить</button>
     </form>
     <script>
         const form = document.querySelector('.form');
+
+        const groupTypeField = form.querySelector('.form__field_group-type');
+        const groupTypeFieldControl = groupTypeField.querySelector('.field__control');
+
+        groupTypeFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
+            console.log('input');
+        });
+        groupTypeFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupTypeFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupTypeFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
 
         const groupLevelField = form.querySelector('.form__field_group-level');
 
