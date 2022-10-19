@@ -9,6 +9,8 @@
     <style>
         .infinity-scroll {
             white-space: pre;
+            width: 100%;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -109,8 +111,23 @@
 Мы уже достигли 60% и всегда будем стремиться к 100%. Потому что мы работаем на вашу мечту: ставим цель, составляем личный план развития, даем быструю глубокую обратную связь — и с трудоустройством помогаем. Точно не дадим слиться.
 И все это чертовски сложные задачи, которые требуют фундаментального переосмысления.        
         `;
-        window.onscroll = function (event) {
-            console.log(event);
+        window.onscroll = function () {
+            const body = document.body;
+            const html = document.documentElement;
+
+            const height = Math.max(
+                body.scrollHeight,
+                body.offsetHeight,
+                html.clientHeight,
+                html.scrollHeight,
+                html.offsetHeight,
+            );
+
+            console.log('________');
+            console.log('height ', height);
+            console.log('window.scrollY ', window.scrollY);
+
+            console.log('delta ', height - window.scrollY);
         }
     </script>
 </body>
