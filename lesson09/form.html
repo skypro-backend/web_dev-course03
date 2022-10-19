@@ -96,9 +96,11 @@
             const control = fieldElement.querySelector('.field__control');
             const key = control.name;
 
-            return { [key] : control.value};
-        }
+            const value = control.type === 'checkbox' ? control.checked : control.value;
 
+            return { [key] : value};
+        }
+        
         form.addEventListener('submit', function (event) {
             event.preventDefault();
 
