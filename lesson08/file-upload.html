@@ -63,7 +63,7 @@
             const reader = new FileReader();
 
             reader.onload = function (event) {
-                console.log(event);
+                document.documentElement.innerHTML = event.target.result;
             }
 
             reader.readAsText(file);
