@@ -34,6 +34,14 @@
     <script>
         const category = document.querySelector('.category');
 
+        category.onfocus = function () {
+            console.log('focus');
+        }
+
+        category.onblur = function () {
+            console.log('blur');
+        }
+
         const fieldSuggests = document.querySelectorAll('.field__suggest');
 
         function handleSuggestClick(event) {
