@@ -51,6 +51,12 @@
 
         category.onkeyup = function (event) {
 
+        }
+
+        const field = document.querySelector('.field');
+
+        category.oninput = function () {
+
             const input = event.target;
             const searchValue = input.value;
 
@@ -66,13 +72,6 @@
                     suggestItem.classList.add('field__suggest_hidden');
                 }
             });
-        }
-
-        const field = document.querySelector('.field');
-
-        category.oninput = function () {
-
-            console.log('input');
         }
     </script>
 </body>
