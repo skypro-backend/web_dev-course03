@@ -94,8 +94,9 @@
 
         function getFieldValue (fieldElement) {
             const control = fieldElement.querySelector('.field__control');
+            const key = control.name;
 
-            return control.value;
+            return { [key] : control.value};
         }
 
         form.addEventListener('submit', function (event) {
