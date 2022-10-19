@@ -15,6 +15,10 @@
             <label for="group-title">Название группы</label>
             <input id="group-title" name="group-title" class="field__control">
         </div>
+        <div class="field form__field form__field_group-count">
+            <label for="group-count">Количество студентов</label>
+            <input id="group-count" name="group-count" class="field__control" type="number">
+        </div>
         <button>Отправить</button>
     </form>
     <script>
@@ -36,6 +40,25 @@
             console.log('focus');
         });
         groupTitleFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
+
+        const groupCountField = form.querySelector('.form__field_group-count');
+        const groupCountFieldControl = groupCountField.querySelector('.field__control');
+
+        groupCountFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
+            console.log('input');
+        });
+        groupCountFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupCountFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupCountFieldControl.addEventListener('blur', () => {
             console.log('blur');
         });
     </script>
