@@ -125,9 +125,16 @@
 
             const fields = formTarget.querySelectorAll('.form__field');
 
+            let result = {};
+
             fields.forEach(field => {
-                console.log(getFieldValue(field));
+                result = {
+                    ...result,
+                    ...getFieldValue(field),
+                };
             });
+
+            console.log(result);
         });
     </script>
 </body>
