@@ -48,6 +48,7 @@
                 name="group-level"
                 class="field__control"
                 type="radio"
+                value="basic"
             >
             <label for="group-level-middle">Средний</label>
             <input
@@ -55,6 +56,7 @@
                 name="group-level"
                 class="field__control"
                 type="radio"
+                value="middle"
             >
             <label for="group-level-advanced">Продвинутый</label>
             <input
@@ -62,6 +64,7 @@
                 name="group-level"
                 class="field__control"
                 type="radio"
+                value="advanced"
             >
         </div>
         <button>Отправить</button>
@@ -73,7 +76,7 @@
         const groupLevelFieldControls = groupLevelField.querySelectorAll('.field__control')
 
         function handleRadioChange (event) {
-            console.log(event.target);
+            console.log(event.target.value);
         }
 
         groupLevelFieldControls.forEach((control) => {
