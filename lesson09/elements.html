@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Формы</h1>
+    <form class="form" action="result.hmtl">
+        <div class="field form__field form__field_group-title">
+            <label for="group-title">Название группы</label>
+            <input id="group-title" class="field__control">
+        </div>
+        <button>Отправить</button>
+    </form>
+    <script>
+        const form = document.querySelector('.form');
+
+        const groupTitleField = form.querySelector('.form__field_group-title');
+        const groupTitleFieldControl = groupTitleField.querySelector('.field__control');
+
+        groupTitleFieldControl.addEventListener('input', () => {
+            console.log('input');
+        });
+        groupTitleFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupTitleFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupTitleFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
+    </script>
+</body>
+
+</html>
