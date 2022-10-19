@@ -93,14 +93,31 @@
         const form = document.querySelector('.form');
 
         function getFieldValue (fieldElement) {
-            const control = fieldElement.querySelector('.field__control');
-            const key = control.name;
+            const controls = fieldElement.querySelectorAll('.field__control');
+            
+            if(controls.length === 1) {
 
-            const value = control.type === 'checkbox' ? control.checked : control.value;
+                const control = controls[0];
 
-            return { [key] : value};
+                const key = control.name;
+
+                const value = control.type === 'checkbox' ? control.checked : control.value;
+
+                return { [key] : value};
+            }
+
+            for (const control of controls) {
+                const key = control.name;
+
+                if(control.checked){
+                    return { [key] : control.value};
+                }
+            }
+
+            const key = controls[0].name;
+                return { [key] : undefined};
         }
-        
+
         form.addEventListener('submit', function (event) {
             event.preventDefault();
 
