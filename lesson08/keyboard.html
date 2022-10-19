@@ -17,13 +17,15 @@
         const field = document.querySelector('.field');
 
         const fieldControl = document.querySelector('.field__control');
-        fieldControl.onkeydown = (event) => {
+        // fieldControl.onkeydown = (event) => {
 
-            console.log('keydown');
-            console.log(event);
-        }
+        // console.log('keydown');
+        // console.log(event);
+        // }
 
         fieldControl.onkeypress = (event) => {
+
+            event.preventDefault();
 
             console.log('keypress');
             console.log(event);
