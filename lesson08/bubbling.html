@@ -55,7 +55,10 @@
             const outerSquare = document.querySelector('.outer-square');
 
             outerSquare.addEventListener('click', (event) => {
+                event.stopPropagation();
                 console.log('outer-square click');
+
+                console.log(event.target);
             });
 
             document.body.addEventListener('click', (event) => {
