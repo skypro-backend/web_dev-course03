@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .click-tracker {
+            position: relative;
+            height: 100%;
+        }
+
+        .click-tracker__spot_normal,
+        .click-tracker__spot_down,
+        .click-tracker__spot_up {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .click-tracker__spot_normal {
+            background: lightcoral;
+        }
+
+        .click-tracker__spot_down {
+            background: lightseagreen;
+        }
+
+        .click-tracker__spot_up {
+            background: orange;
+        }
+
+        .content_hidden {
+            display: none;
+        }
+
+        .upload {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 3px lightskyblue dashed;
+            border-radius: 8px;
+            background-color: blanchedalmond;
+        }
+
+        .upload__control {
+            position: absolute;
+            top: -10000px;
+            left: -10000px;
+        }
+
+        .outer-square {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            height: 200px;
+            background-color: cadetblue;
+        }
+
+        .inner-square {
+            width: 100px;
+            height: 100px;
+            background-color: goldenrod;
+        }
+
+        .draggable_drag {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="click-tracker">
+        <a href="https://sky.pro" class="pseudo-link">Я тренировочная ссылка</a>
+        <div class="content content_hidden">Освойте конкретные навыки и ускорьте карьерный рост</div>
+        <button class="event-button draggable">Самое важное событие этой недели...</button>
+        <button class="count-button" data-clicks="0">
+            Пока вы смотрите видео, я клики считаю:
+            <span class="count-button__counter">0</span>
+        </button>
+        <button class="count-button" data-clicks="0">
+            Пока вы смотрите видео, я клики считаю:
+            <span class="count-button__counter">0</span>
+        </button>
+        <h3 class="inline-edit">Заголовок</h3>
+        <div class="upload">
+            <input class="upload__control" type="file">Загрузить!
+        </div>
+        <div class="outer-square">
+            <div class="inner-square draggable"></div>
+        </div>
+    </main>
+    <script>
+        const draggables = document.querySelectorAll('.draggable');
+
+        let draggingElement;
+
+        function handleDrag(event) {
+
+            draggingElement.style.top = event.pageY + 'px';
+
+            draggingElement.style.left = event.pageX + 'px';
+        }
+
+
+        function handleDragEnd(event) {
+
+            document.body.onmousemove = undefined;
+
+            draggingElement.onmouseup = undefined;
+
+            draggingElement = undefined;
+        }
+
+        function handleDragStart(event) {
+
+            const target = event.target;
+            target.classList.add('draggable_drag');
+            document.body.appendChild(target);
+
+            document.body.onmousemove = handleDrag;
+
+            draggingElement = target;
+
+            handleDrag(event);
+
+            target.onmouseup = handleDragEnd;
+        }
+
+        draggables.forEach(draggable => {
+            draggable.onmousedown = handleDragStart;
+        });
+
+        const innerSquare = document.querySelector('.inner-square');
+        innerSquare.onmouseenter = function () {
+
+            console.log('inner-square mouseenter');
+        }
+
+        innerSquare.onmouseleave = function () {
+
+            console.log('inner-square mouseleave');
+        }
+
+        innerSquare.onmouseover = function () {
+
+            console.log('inner-square mouseover');
+        }
+
+        innerSquare.onmouseout = function () {
+
+            console.log('inner-square mouseout');
+        }
+
+        const outerSquare = document.querySelector('.outer-square');
+        outerSquare.onmouseenter = function () {
+
+            console.log('outer-square mouseenter');
+        }
+
+        outerSquare.onmouseleave = function () {
+
+            console.log('outer-square mouseleave');
+        }
+
+        outerSquare.onmouseover = function () {
+
+            console.log('outer-square mouseover');
+        }
+
+        outerSquare.onmouseout = function () {
+
+            console.log('outer-square mouseout');
+        }
+
+        const upload = document.querySelector('.upload');
+        upload.onclick = (event) => {
+
+            const target = event.target;
+
+            const control = target.querySelector('.upload__control');
+
+            if (control) {
+                control.click();
+            }
+        }
+
+        const inlineEdit = document.querySelector('.inline-edit');
+        inlineEdit.onclick = function (event) {
+
+            const target = event.target;
+
+            const input = document.createElement('input');
+            input.value = target.textContent;
+            target.innerHTML = '';
+            target.appendChild(input);
+
+            input.focus();
+        }
+
+        const countButtons = document.querySelectorAll('.count-button');
+
+        const handlerCountButtonClick = (event) => {
+
+            const targetButton = event.target;
+
+            let clicks = Number(targetButton.dataset.clicks);
+
+            clicks += 1;
+
+            const counter = targetButton.querySelector('.count-button__counter');
+            counter.textContent = clicks;
+
+            targetButton.dataset.clicks = clicks;
+        }
+
+        countButtons.forEach(countButton => {
+            countButton.onclick = handlerCountButtonClick;
+        });
+
+        const eventButton = document.querySelector('.event-button');
+        eventButton.onclick = function (event) {
+
+            console.log(event);
+        }
+
+        const clickTracker = document.querySelector('.click-tracker');
+
+        function leaveSpot(target, x, y, type) {
+
+            const spot = document.createElement('div');
+            spot.classList.add('click-tracker__spot_' + type);
+            target.appendChild(spot);
+
+            spot.style.top = (y - 3) + 'px';
+
+            spot.style.left = (x - 3) + 'px';
+        }
+
+        clickTracker.onclick = function (event) {
+
+            const x = event.offsetX;
+
+            const y = event.offsetY;
+
+            leaveSpot(event.target, x, y, 'normal');
+        }
+
+        clickTracker.onmousedown = function (event) {
+
+            const x = event.offsetX;
+
+            const y = event.offsetY;
+
+            leaveSpot(event.target, x, y, 'down');
+        }
+
+        clickTracker.onmouseup = function (event) {
+
+            const x = event.offsetX;
+
+            const y = event.offsetY;
+
+            leaveSpot(event.target, x, y, 'up');
+        }
+
+        clickTracker.oncontextmenu = function (event) {
+
+            event.preventDefault();
+
+            console.log('oncontextmenu');
+
+            console.log(event);
+        }
+
+        const pseudoLink = document.querySelector('.pseudo-link');
+
+        const content = document.querySelector('.content');
+
+        pseudoLink.onclick = function (event) {
+
+            event.preventDefault();
+
+            content.classList.remove('content_hidden');
+        }
+    </script>
+</body>
+
+</html>
