@@ -17,21 +17,24 @@
         const field = document.querySelector('.field');
 
         const fieldControl = document.querySelector('.field__control');
-        fieldControl.onkeydown = (event) => {
+        // fieldControl.onkeydown = (event) => {
 
-            event.preventDefault();
+        // event.preventDefault();
 
-            console.log('keydown');
-            console.log(event);
-        }
+        // console.log('keydown');
+        // console.log(event);
+        // }
 
-        // fieldControl.onkeypress = (event) => {
+        fieldControl.onkeypress = (event) => {
 
-            // event.preventDefault();
+            if ((event.keyCode < 48) || (event.keyCode > 57)) {
+                event.preventDefault();
+                return;
+            }
 
             // console.log('keypress');
             // console.log(event);
-        // }
+        }
     </script>
 </body>
 
