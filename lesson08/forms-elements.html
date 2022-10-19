@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .category_error {
+            outline: 1px solid salmon;
+        }
+
         .field__suggest {
             display: inline-block;
             margin: 4px;
@@ -21,18 +25,33 @@
 </head>
 
 <body>
-    <div class="field">
-        <label for="category">Категория</label>
-        <input id="category" class="field__control category">
-        <div class="field__suggests">
-            <div class="field__suggest" data-suggest="Программирование">Программирование</div>
-            <div class="field__suggest" data-suggest="Приколы">Приколы</div>
-            <div class="field__suggest" data-suggest="Прогулки">Прогулки</div>
-            <div class="field__suggest" data-suggest="Записи занятий">Записи занятий</div>
+    <form class="form">
+        <div class="field">
+            <label for="category">Категория</label>
+            <input id="category" class="field__control category">
+            <div class="field__suggests">
+                <div class="field__suggest" data-suggest="Программирование">Программирование</div>
+                <div class="field__suggest" data-suggest="Приколы">Приколы</div>
+                <div class="field__suggest" data-suggest="Прогулки">Прогулки</div>
+                <div class="field__suggest" data-suggest="Записи занятий">Записи занятий</div>
+            </div>
         </div>
-    </div>
+        <button>Отправить</button>
+    </form>
     <script>
+        const form = document.querySelector('.form');
         const category = document.querySelector('.category');
+
+        form.onsubmit = function (event) {
+            event.preventDefault();
+
+            console.log(event);
+            if (category.value === '') {
+                category.classList.add('category_error');
+            } else {
+                category.classList.remove('category_error');
+            }
+        }
 
         category.onfocus = function () {
             console.log('focus');
