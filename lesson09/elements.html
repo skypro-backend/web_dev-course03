@@ -74,19 +74,13 @@
 
         const groupLevelField = form.querySelector('.form__field_group-level');
 
-        groupLevelField.addEventListener('change', () => {
-            console.log('change groupLevelFieldControls');
-        });
-
-        const groupLevelFieldControls = groupLevelField.querySelectorAll('.field__control')
-
         function handleRadioChange (event) {
             console.log(event.target.value);
         }
 
-        groupLevelFieldControls.forEach((control) => {
-            control.addEventListener('change', handleRadioChange);
-        });
+        groupLevelField.addEventListener('change', handleRadioChange);
+
+        const groupLevelFieldControls = groupLevelField.querySelectorAll('.field__control')
 
         const groupTitleField = form.querySelector('.form__field_group-title');
         const groupTitleFieldControl = groupTitleField.querySelector('.field__control');
