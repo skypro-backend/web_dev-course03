@@ -23,7 +23,10 @@
         const groupTitleField = form.querySelector('.form__field_group-title');
         const groupTitleFieldControl = groupTitleField.querySelector('.field__control');
 
-        groupTitleFieldControl.addEventListener('input', () => {
+        groupTitleFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
             console.log('input');
         });
         groupTitleFieldControl.addEventListener('change', () => {
