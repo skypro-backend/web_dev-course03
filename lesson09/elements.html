@@ -73,6 +73,11 @@
         const form = document.querySelector('.form');
 
         const groupLevelField = form.querySelector('.form__field_group-level');
+
+        groupLevelField.addEventListener('change', () => {
+            console.log('change groupLevelFieldControls');
+        });
+
         const groupLevelFieldControls = groupLevelField.querySelectorAll('.field__control')
 
         function handleRadioChange (event) {
