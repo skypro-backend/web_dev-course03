@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .upload {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border: 3px lightskyblue dashed;
+            border-radius: 8px;
+            background-color: blanchedalmond;
+        }
+
+        .upload__control {
+            position: absolute;
+            top: -10000px;
+            left: -10000px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="main">
+        <div class="upload">
+            <input class="upload__control" type="file">Загрузить!
+        </div>
+    </main>
+    <script>
+        const upload = document.querySelector('.upload');
+        const uploadControl = upload.querySelector('.upload__control');
+
+        upload.onclick = (event) => {
+            const target = event.target;
+
+            const control = target.querySelector('.upload__control');
+
+            if (control) {
+                control.click();
+            }
+        }
+
+        uploadControl.oninput = (event) => {
+            const control = event.target;
+            const files = control.files;
+            const file = files[0];
+
+            if (!file) {
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                document.documentElement.innerHTML = event.target.result;
+            }
+
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+
+</html>

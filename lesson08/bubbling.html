@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .outer-square {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            width: 50px;
+            background-color: gray;
+        }
+
+        .inner-red-square,
+        .inner-yellow-square,
+        .inner-green-square {
+            width: 30px;
+            height: 30px;
+        }
+
+        .inner-red-square {
+            background-color: lightcoral;
+        }
+
+        .inner-yellow-square {
+            background-color: goldenrod;
+        }
+
+        .inner-green-square {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-square">
+        <div class="inner-red-square" data-color="lightcoral"> </div>
+        <div class="inner-yellow-square" data-color="goldenrod"> </div>
+        <div class="inner-green-square" data-color="lightgreen"> </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const outerSquare = document.querySelector('.outer-square');
+
+            outerSquare.addEventListener('click', (event) => {
+                event.stopPropagation();
+                console.log('outer-square click');
+
+                console.log(event.target);
+
+                const color = event.target.dataset.color;
+
+                if (!color) {
+                    return;
+                }
+
+                document.body.style.background = color;
+            });
+
+            document.body.addEventListener('click', (event) => {
+                console.log('document body click');
+            });
+
+            document.documentElement.addEventListener('click', (event) => {
+                console.log('document html click');
+            });
+        });
+    </script>
+</body>
+
+</html>

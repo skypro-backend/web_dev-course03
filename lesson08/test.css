@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.gallery {
+    max-width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.image {
+    width: 100%;
+}

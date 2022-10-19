@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .message_hidden {
+            display: none;
+        }
+
+        .field__suggest {
+            display: inline-block;
+            margin: 4px;
+            color: lightskyblue;
+            text-decoration: dashed;
+        }
+
+        .field__suggest_hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="field">
+        <label for="phone">Телефон</label>
+        +<input id="phone" class="field__control phone">
+    </div>
+    <div class="message message_hidden">Номер сохранен</div>
+    <div class="field">
+        <label for="category">Категория</label>
+        <input id="category" class=" field__control category">
+        <div class="field__suggests">
+            <div class="field__suggest" data-suggest="Программирование">Программирование</div>
+            <div class="field__suggest" data-suggest="Приколы">Приколы</div>
+            <div class="field__suggest" data-suggest="Прогулки">Прогулки</div>
+            <div class="field__suggest" data-suggest="Записи занятий">Записи занятий</div>
+        </div>
+    </div>
+    <script>
+        const category = document.querySelector('.category');
+
+        const fieldSuggests = document.querySelectorAll('.field__suggest');
+
+        function handleSuggestClick(event) {
+
+            const suggest = event.target;
+            const field = suggest.closest('.field');
+
+            const control = field.querySelector('.field__control');
+            control.value = suggest.dataset.suggest;
+        }
+
+        fieldSuggests.forEach((suggest) => {
+            suggest.onclick = handleSuggestClick;
+        });
+
+        category.onkeyup = function (event) {
+
+            const input = event.target;
+            const searchValue = input.value;
+
+            const field = input.closest('.field');
+            const suggests = field.querySelector('.field__suggests');
+            const suggestItems = suggests.querySelectorAll('.field__suggest');
+            suggestItems.forEach(suggestItem => {
+                if (suggestItem.dataset.suggest.startsWith(searchValue)) {
+
+                    suggestItem.classList.remove('field__suggest_hidden');
+
+                } else {
+                    suggestItem.classList.add('field__suggest_hidden');
+                }
+            });
+        }
+
+        const field = document.querySelector('.field');
+        const phone = document.querySelector('.phone');
+        const savedValue = localStorage.getItem('phone');
+        if (savedValue) {
+            phone.value = savedValue;
+        }
+
+        const message = document.querySelector('.message');
+
+        document.body.onkeydown = function (event) {
+
+            if (!((event.keyCode === 83) && ((event.metakey === true) || (event.ctrlKey === true)))) {
+                return;
+            }
+
+            event.preventDefault();
+
+            localStorage.setItem('phone', phone.value);
+
+            console.log(event);
+
+            message.classList.remove('message_hidden');
+        }
+
+        phone.onkeypress = (event) => {
+
+            if ((event.keyCode < 48) || (event.keyCode > 57)) {
+                event.preventDefault();
+                return;
+            }
+        }
+    </script>
+</body>
+
+</html>
