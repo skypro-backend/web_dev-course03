@@ -73,17 +73,43 @@
                 id="group-type"
                 name="group-type"
                 class="field__control"
-                multiple
             >
                 <option value="FD">Фронтенд разработка</option>
                 <option value="QA">Тестирование</option>
                 <option value="AD">Аналитика данных</option>
             </select>
         </div>
+        <div class="field form__field form__field_group-comment">
+            <label for="group-comment">Комментарий</label>
+            <textarea
+                id="group-comment"
+                name="group-comment"
+                class="field__control"
+            ></textarea>
+        </div>
         <button>Отправить</button>
     </form>
     <script>
         const form = document.querySelector('.form');
+
+        const groupCommentField = form.querySelector('.form__field_group-comment');
+        const groupCommentFieldControl = groupCommentField.querySelector('.field__control');
+
+        groupCommentFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
+            console.log('input');
+        });
+        groupCommentFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupCommentFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupCommentFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
 
         const groupTypeField = form.querySelector('.form__field_group-type');
         const groupTypeFieldControl = groupTypeField.querySelector('.field__control');
