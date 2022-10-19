@@ -102,202 +102,192 @@
         </div>
     </main>
     <script>
-        const draggables = document.querySelectorAll('.draggable');
+        document.addEventListener('DOMContentLoaded', () => {
 
-        let draggingElement;
+            const draggables = document.querySelectorAll('.draggable');
 
-        function handleDrag(event) {
+            let draggingElement;
 
-            draggingElement.style.top = event.pageY + 'px';
+            function handleDrag(event) {
 
-            draggingElement.style.left = event.pageX + 'px';
-        }
-
-
-        function handleDragEnd(event) {
-
-            document.body.onmousemove = undefined;
-
-            draggingElement.onmouseup = undefined;
-
-            draggingElement = undefined;
-        }
-
-        function handleDragStart(event) {
-
-            const target = event.target;
-
-            target.classList.add('draggable_drag');
-
-            document.body.appendChild(target);
-
-            document.body.onmousemove = handleDrag;
-
-            draggingElement = target;
-
-            handleDrag(event);
-
-            target.onmouseup = handleDragEnd;
-        }
-
-
-        draggables.forEach(draggable => {
-            draggable.onmousedown = handleDragStart;
-        });
-
-        const innerSquare = document.querySelector('.inner-square');
-        innerSquare.onmouseenter = function () {
-
-            console.log('inner-square mouseenter');
-        }
-
-        innerSquare.onmouseleave = function () {
-
-            console.log('inner-square mouseleave');
-        }
-
-        innerSquare.onmouseover = function () {
-
-            console.log('inner-square mouseover');
-        }
-
-        innerSquare.onmouseout = function () {
-
-            console.log('inner-square mouseout');
-        }
-
-        const outerSquare = document.querySelector('.outer-square');
-        outerSquare.onmouseenter = function () {
-
-            console.log('outer-square mouseenter');
-        }
-
-        outerSquare.onmouseleave = function () {
-
-            console.log('outer-square mouseleave');
-        }
-
-        outerSquare.onmouseover = function () {
-
-            console.log('outer-square mouseover');
-        }
-
-        outerSquare.onmouseout = function () {
-
-            console.log('outer-square mouseout');
-        }
-
-        const upload = document.querySelector('.upload');
-        upload.onclick = (event) => {
-
-            const target = event.target;
-
-            const control = target.querySelector('.upload__control');
-
-            if (control) {
-                control.click();
+                draggingElement.style.top = event.pageY + 'px';
+                draggingElement.style.left = event.pageX + 'px';
             }
-        }
 
-        const inlineEdit = document.querySelector('.inline-edit');
-        inlineEdit.onclick = function (event) {
 
-            const target = event.target;
+            function handleDragEnd(event) {
 
-            const input = document.createElement('input');
-            input.value = target.textContent;
-            target.innerHTML = '';
-            target.appendChild(input);
+                document.body.onmousemove = undefined;
+                draggingElement.onmouseup = undefined;
+                draggingElement = undefined;
+            }
 
-            input.focus();
-        }
+            function handleDragStart(event) {
 
-        const countButtons = document.querySelectorAll('.count-button');
+                const target = event.target;
 
-        const handlerCountButtonClick = (event) => {
+                target.classList.add('draggable_drag');
+                document.body.appendChild(target);
+                document.body.onmousemove = handleDrag;
+                draggingElement = target;
 
-            const targetButton = event.target;
+                handleDrag(event);
 
-            let clicks = Number(targetButton.dataset.clicks);
+                target.onmouseup = handleDragEnd;
+            }
 
-            clicks += 1;
 
-            const counter = targetButton.querySelector('.count-button__counter');
-            counter.textContent = clicks;
+            draggables.forEach(draggable => {
+                draggable.onmousedown = handleDragStart;
+            });
 
-            targetButton.dataset.clicks = clicks;
-        }
+            const innerSquare = document.querySelector('.inner-square');
+            innerSquare.onmouseenter = function () {
 
-        countButtons.forEach(countButton => {
-            countButton.onclick = handlerCountButtonClick;
+                console.log('inner-square mouseenter');
+            }
+
+            innerSquare.onmouseleave = function () {
+
+                console.log('inner-square mouseleave');
+            }
+
+            innerSquare.onmouseover = function () {
+
+                console.log('inner-square mouseover');
+            }
+
+            innerSquare.onmouseout = function () {
+
+                console.log('inner-square mouseout');
+            }
+
+            const outerSquare = document.querySelector('.outer-square');
+            outerSquare.onmouseenter = function () {
+
+                console.log('outer-square mouseenter');
+            }
+
+            outerSquare.onmouseleave = function () {
+
+                console.log('outer-square mouseleave');
+            }
+
+            outerSquare.onmouseover = function () {
+
+                console.log('outer-square mouseover');
+            }
+
+            outerSquare.onmouseout = function () {
+
+                console.log('outer-square mouseout');
+            }
+
+            const upload = document.querySelector('.upload');
+            upload.onclick = (event) => {
+
+                const target = event.target;
+                const control = target.querySelector('.upload__control');
+
+                if (control) {
+                    control.click();
+                }
+            }
+
+            const inlineEdit = document.querySelector('.inline-edit');
+            inlineEdit.onclick = function (event) {
+
+                const target = event.target;
+
+                const input = document.createElement('input');
+                input.value = target.textContent;
+                target.innerHTML = '';
+                target.appendChild(input);
+
+                input.focus();
+            }
+
+            const countButtons = document.querySelectorAll('.count-button');
+
+            const handlerCountButtonClick = (event) => {
+
+                const targetButton = event.target;
+
+                let clicks = Number(targetButton.dataset.clicks);
+
+                clicks += 1;
+
+                const counter = targetButton.querySelector('.count-button__counter');
+                counter.textContent = clicks;
+
+                targetButton.dataset.clicks = clicks;
+            }
+
+            countButtons.forEach(countButton => {
+                countButton.onclick = handlerCountButtonClick;
+            });
+
+
+            const eventButton = document.querySelector('.event-button');
+            eventButton.onclick = function (event) {
+
+                console.log(event);
+            }
+
+            const clickTracker = document.querySelector('.click-tracker');
+
+            function leaveSpot(target, x, y, type) {
+
+                const spot = document.createElement('div');
+                spot.classList.add('click-tracker__spot_' + type);
+                target.appendChild(spot);
+
+                spot.style.top = (y - 3) + 'px';
+                spot.style.left = (x - 3) + 'px';
+            }
+
+            clickTracker.onclick = function (event) {
+
+                const x = event.offsetX;
+                const y = event.offsetY;
+
+                leaveSpot(event.target, x, y, 'normal');
+            }
+
+            clickTracker.onmousedown = function (event) {
+
+                const x = event.offsetX;
+                const y = event.offsetY;
+
+                leaveSpot(event.target, x, y, 'down');
+            }
+
+            clickTracker.onmouseup = function (event) {
+
+                const x = event.offsetX;
+                const y = event.offsetY;
+
+                leaveSpot(event.target, x, y, 'up');
+            }
+
+            clickTracker.oncontextmenu = function (event) {
+
+                event.preventDefault();
+
+                console.log('oncontextmenu');
+                console.log(event);
+            }
+
+            const pseudoLink = document.querySelector('.pseudo-link');
+            const content = document.querySelector('.content');
+
+            pseudoLink.onclick = function (event) {
+
+                event.preventDefault();
+
+                content.classList.remove('content_hidden');
+            }
         });
-
-
-        const eventButton = document.querySelector('.event-button');
-        eventButton.onclick = function (event) {
-
-            console.log(event);
-        }
-
-        const clickTracker = document.querySelector('.click-tracker');
-
-        function leaveSpot(target, x, y, type) {
-
-            const spot = document.createElement('div');
-            spot.classList.add('click-tracker__spot_' + type);
-            target.appendChild(spot);
-
-            spot.style.top = (y - 3) + 'px';
-
-            spot.style.left = (x - 3) + 'px';
-        }
-
-        clickTracker.onclick = function (event) {
-
-            const x = event.offsetX;
-
-            const y = event.offsetY;
-
-            leaveSpot(event.target, x, y, 'normal');
-        }
-
-        clickTracker.onmousedown = function (event) {
-
-            const x = event.offsetX;
-
-            const y = event.offsetY;
-
-            leaveSpot(event.target, x, y, 'down');
-        }
-
-        clickTracker.onmouseup = function (event) {
-
-            const x = event.offsetX;
-
-            const y = event.offsetY;
-
-            leaveSpot(event.target, x, y, 'up');
-        }
-
-        clickTracker.oncontextmenu = function (event) {
-
-            event.preventDefault();
-
-            console.log('oncontextmenu');
-
-            console.log(event);
-        }
-
-        const pseudoLink = document.querySelector('.pseudo-link');
-
-        const content = document.querySelector('.content');
-
-        pseudoLink.onclick = function (event) {
-
-            event.preventDefault();
-
-            content.classList.remove('content_hidden');
-        }
     </script>
 </body>
 
