@@ -41,7 +41,9 @@
         form.addEventListener('submit', (event) => {
             event.preventDefault();
 
-            console.dir(event.target);
+            const form = event.target;
+
+            console.log(form.checkValidity());
 
             console.log('submit');
         });
