@@ -38,6 +38,8 @@
     <script>
         const form = document.querySelector('.form');
 
+        const errorKeys = Object.keys(ValidityState.prototype);
+
         form.addEventListener('submit', (event) => {
             event.preventDefault();
 
@@ -57,11 +59,14 @@
                 }
 
                 console.log(control.name);
-                Object.keys(ValidityState.prototype).forEach(errorType => {
+
+                for(const errorType of errorKeys){
                     if(control.validity[errorType]) {
                         console.log(errorType);
+
+                        break;
                     }
-                });
+                }
             });
         });
     </script>
