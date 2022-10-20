@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Формы</h1>
+    <form class="form" action="result.hmtl">
+        <div class="field form__field form__field_group-title">
+            <label for="group-title">Название группы</label>
+            <input
+                id="group-title"
+                name="group-title"
+                class="field__control"
+            >
+        </div>
+        <div class="field form__field form__field_group-count">
+            <label for="group-count">Количество студентов</label>
+            <input
+                id="group-count"
+                name="group-count"
+                class="field__control"
+                type="number"
+                max="100"
+                min="10"
+                step="5"
+            >
+        </div>
+        <div class="field form__field form__field_group-agree">
+            <label for="group-agree">Согласен сдавать все домашки на отлично</label>
+            <input
+                id="group-agree"
+                name="group-agree"
+                class="field__control"
+                type="checkbox"
+            >
+        </div>
+        <div class="field form__field form__field_group-level">
+            <label>Уровень группы</label>
+            <label for="group-level-basic">Начальный</label>
+            <input
+                id="group-level-basic"
+                name="group-level"
+                class="field__control"
+                type="radio"
+                value="basic"
+            >
+            <label for="group-level-middle">Средний</label>
+            <input
+                id="group-level-middle"
+                name="group-level"
+                class="field__control"
+                type="radio"
+                value="middle"
+            >
+            <label for="group-level-advanced">Продвинутый</label>
+            <input
+                id="group-level-advanced"
+                name="group-level"
+                class="field__control"
+                type="radio"
+                value="advanced"
+            >
+        </div>
+        <div class="field form__field form__field_group-type">
+            <label for="group-type">Направление группы</label>
+            <select
+                id="group-type"
+                name="group-type"
+                class="field__control"
+            >
+                <option value="FD">Фронтенд разработка</option>
+                <option value="QA">Тестирование</option>
+                <option value="AD">Аналитика данных</option>
+            </select>
+        </div>
+        <div class="field form__field form__field_group-comment">
+            <label for="group-comment">Комментарий</label>
+            <textarea
+                id="group-comment"
+                name="group-comment"
+                class="field__control"
+            ></textarea>
+        </div>
+        <button>Отправить</button>
+    </form>
+    <script>
+        const form = document.querySelector('.form');
+
+        const groupCommentField = form.querySelector('.form__field_group-comment');
+        const groupCommentFieldControl = groupCommentField.querySelector('.field__control');
+
+        groupCommentFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
+            console.log('input');
+        });
+        groupCommentFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupCommentFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupCommentFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
+
+        const groupTypeField = form.querySelector('.form__field_group-type');
+        const groupTypeFieldControl = groupTypeField.querySelector('.field__control');
+
+        groupTypeFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
+            console.log('input');
+        });
+        groupTypeFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupTypeFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupTypeFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
+
+        const groupLevelField = form.querySelector('.form__field_group-level');
+
+        function handleRadioChange (event) {
+            console.log(event.target.value);
+        }
+
+        groupLevelField.addEventListener('change', handleRadioChange);
+
+        const groupLevelFieldControls = groupLevelField.querySelectorAll('.field__control')
+
+        const groupTitleField = form.querySelector('.form__field_group-title');
+        const groupTitleFieldControl = groupTitleField.querySelector('.field__control');
+
+        groupTitleFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
+            console.log('input');
+        });
+        groupTitleFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupTitleFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupTitleFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
+
+        const groupCountField = form.querySelector('.form__field_group-count');
+        const groupCountFieldControl = groupCountField.querySelector('.field__control');
+
+        groupCountFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.log(target.value);
+            console.log('input');
+        });
+        groupCountFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupCountFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupCountFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
+
+        const groupAgreeField = form.querySelector('.form__field_group-agree');
+        const groupAgreeFieldControl = groupAgreeField.querySelector('.field__control');
+
+        groupAgreeFieldControl.addEventListener('input', (event) => {
+            const target = event.target;
+
+            console.dir(target.checked);
+            console.log('input');
+        });
+        groupAgreeFieldControl.addEventListener('change', () => {
+            console.log('change');
+        });
+        groupAgreeFieldControl.addEventListener('focus', () => {
+            console.log('focus');
+        });
+        groupAgreeFieldControl.addEventListener('blur', () => {
+            console.log('blur');
+        });
+    </script>
+</body>
+
+</html>
