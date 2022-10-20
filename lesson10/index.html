@@ -6,6 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .field__error {
+            color: lightcoral;
+        }
+
+        .field__error_hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,15 +23,17 @@
         <div class="field form__field form__field_group-title">
             <label for="group-title">Название группы</label>
             <input id="group-title" name="group-title" class="field__control" required maxlength="20">
+            <div class="field__error field__error_hidden"></div>
         </div>
         <div class="field form__field form__field_mentor-email">
             <label for="mentor-email">E-mail преподавателя</label>
             <input id="mentor-email" name="mentor-email" class="field__control" type="email" required>
+            <div class="field__error field__error_hidden"></div>
         </div>
         <div class="field form__field form__field_group-count">
             <label for="group-count">Количество студентов</label>
-            <input id="group-count" name="group-count" class="field__control" type="number" max="100" min="10" step="5"
-                required>
+            <input id="group-count" name="group-count" class="field__control" type="number" max="100" min="10" step="5" required>
+            <div class="field__error field__error_hidden"></div>
         </div>
         <div class="field form__field form__field_credit-card">
             <label for="credit-card">Кредитная карта</label>
@@ -32,6 +43,7 @@
                 class="field__control"
                 pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$"
                 required>
+            <div class="field__error field__error_hidden"></div>
         </div>
         <button>Отправить</button>
     </form>
@@ -60,6 +72,14 @@
             }
         };
 
+        function showError(fieldControl, message) {
+            const field = fieldControl.closest('.field');
+            const fieldError = field.querySelector('.field__error');
+
+            fieldError.classList.remove('field__error_hidden');
+            fieldError.textContent = message;
+        }
+
         form.addEventListener('submit', (event) => {
             event.preventDefault();
 
@@ -86,8 +106,9 @@
                     }
 
                     console.log(ERRORS[control.name][errorType]);
+                    showError(control, ERRORS[control.name][errorType]);
 
-                        break;
+                    break;
                 }
             });
         });
