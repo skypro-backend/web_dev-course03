@@ -52,7 +52,16 @@
             const controls = form.querySelectorAll('.field__control');
 
             controls.forEach(control => {
-                console.dir(control);
+                if(control.validity.valid){
+                    return;
+                }
+
+                console.log(control.name);
+                Object.keys(ValidityState.prototype).forEach(errorType => {
+                    if(control.validity[errorType]) {
+                        console.log(errorType);
+                    }
+                });
             });
         });
     </script>
