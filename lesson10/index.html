@@ -40,6 +40,26 @@
 
         const errorKeys = Object.keys(ValidityState.prototype);
 
+        const ERRORS = {
+            'group-title': {
+                valueMissing: 'Без названия учиться не получится',
+            },
+            'mentor-email': {
+                valueMissing: 'Нам требуется ящик ментора, чтобы слать полезные рассылки туда',
+                typeMismatch: 'А это точно электропочта? Не похоже...',
+            },
+            'group-count': {
+                valueMissing: 'Нет студентов - нет группы',
+                stepMismatch: 'Мы не любим, когда количество студентов не делится на 5',
+                rangeOverflow: 'Многовато студентов',
+                rangeUnderflow: 'Маловато студентов',
+            },
+            'credit-card': {
+                valueMissing: 'Э, а платить кто будет?',
+                patternMismatch: 'Не удалось списать деньги с карты',
+            }
+        };
+
         form.addEventListener('submit', (event) => {
             event.preventDefault();
 
@@ -61,11 +81,13 @@
                 console.log(control.name);
 
                 for(const errorType of errorKeys){
-                    if(control.validity[errorType]) {
-                        console.log(errorType);
+                    if(!control.validity[errorType]) {
+                        continue;
+                    }
+
+                    console.log(ERRORS[control.name][errorType]);
 
                         break;
-                    }
                 }
             });
         });
