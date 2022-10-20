@@ -43,9 +43,17 @@
 
             const form = event.target;
 
-            console.log(form.checkValidity());
+            if (form.checkValidity()){
+                console.log('submit');
 
-            console.log('submit');
+                return;
+            }
+
+            const controls = form.querySelectorAll('.field__control');
+
+            controls.forEach(control => {
+                console.dir(control);
+            });
         });
     </script>
 </body>
