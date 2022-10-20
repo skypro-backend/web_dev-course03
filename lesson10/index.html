@@ -49,6 +49,7 @@
     </form>
     <script>
         const form = document.querySelector('.form');
+        const controls = form.querySelectorAll('.field__control');
 
         const errorKeys = Object.keys(ValidityState.prototype);
 
@@ -87,12 +88,40 @@
             fieldError.classList.add('field__error_hidden');
         }
 
+        function validateInput (control) {
+            if(control.validity.valid){
+                hideError(control);
+                return;
+            }
+
+            console.log(control.name);
+
+            for(const errorType of errorKeys){
+                if(!control.validity[errorType]) {
+                    continue;
+                }
+
+                console.log(ERRORS[control.name][errorType]);
+                showError(control, ERRORS[control.name][errorType]);
+                break;
+            }
+        }
+
+        function handleFromControlChange (event) {
+            const control = event.target;
+
+            validateInput(control);
+        }
+
+        controls.forEach(control => {
+            control.addEventListener('change', handleFromControlChange);
+        });
+
         form.addEventListener('submit', (event) => {
             event.preventDefault();
 
             const form = event.target;
 
-            const controls = form.querySelectorAll('.field__control');
             controls.forEach(control => hideError(control));
 
             if (form.checkValidity()){
@@ -101,23 +130,7 @@
                 return;
             }
 
-            controls.forEach(control => {
-                if(control.validity.valid){
-                    return;
-                }
-
-                console.log(control.name);
-
-                for(const errorType of errorKeys){
-                    if(!control.validity[errorType]) {
-                        continue;
-                    }
-
-                    console.log(ERRORS[control.name][errorType]);
-                    showError(control, ERRORS[control.name][errorType]);
-                    break;
-                }
-            });
+            controls.forEach(validateInput);
         });
     </script>
 </body>
