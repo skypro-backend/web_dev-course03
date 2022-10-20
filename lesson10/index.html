@@ -80,18 +80,26 @@
             fieldError.textContent = message;
         }
 
+        function hideError(fieldControl) {
+            const field = fieldControl.closest('.field');
+            const fieldError = field.querySelector('.field__error');
+
+            fieldError.classList.add('field__error_hidden');
+        }
+
         form.addEventListener('submit', (event) => {
             event.preventDefault();
 
             const form = event.target;
+
+            const controls = form.querySelectorAll('.field__control');
+            controls.forEach(control => hideError(control));
 
             if (form.checkValidity()){
                 console.log('submit');
 
                 return;
             }
-
-            const controls = form.querySelectorAll('.field__control');
 
             controls.forEach(control => {
                 if(control.validity.valid){
@@ -107,7 +115,6 @@
 
                     console.log(ERRORS[control.name][errorType]);
                     showError(control, ERRORS[control.name][errorType]);
-
                     break;
                 }
             });
