@@ -9,8 +9,12 @@
 </head>
 
 <body>
+    <h1>Валидация форм</h1>
     <form class="form">
-        <input required>
+        <div class="field form__field form__field_group-title">
+            <label for="group-title">Название группы</label>
+            <input id="group-title" name="group-title" class="field__control" required>
+        </div>
         <button>Отправить</button>
     </form>
     <script>
