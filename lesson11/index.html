@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .group-dropdown__other_hidden{
+            display: none;
+        }
+
+        .suggest__suggest-popup {
+            position: absolute;
+            padding: 4px 2px;
+            border: 1px solid #333;
+            background: #fff;
+        }
+
+        .suggest__suggest-popup_hidden {
+            display: none;
+        }
+
+        .suggest__suggest-popup-item {
+            cursor: pointer;
+            padding: 2px 2px;
+            margin: 0 -2px;
+        }
+
+        .suggest__suggest-popup-item:hover {
+            background-color: bisque;
+        }
+
+        .tooltip__popup {
+            position: absolute;
+            padding: 4px 2px;
+            border: 1px solid #333;
+            border-radius: 3px;
+            box-shadow: #333 2px 2px 2px;
+            background: #fff;
+        }
+
+        .tooltip__popup_hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="inline-edit">Типовые виджеты</h1>
+    <div class="username">
+        <div class="username__login">
+            <label for="login">Имя пользователя</label>
+            <input
+                id="login"
+                name="login"
+                class="username__login-control"
+            >
+        </div>
+        <div class="username__as-guest">
+            <label for="as-guest">Войти как гость</label>
+            <input
+                id="as-guest"
+                name="as-guest"
+                class="username__as-guest-control"
+                type="checkbox"
+            >
+        </div>
+    </div>
+    <div class="group-dropdown">
+        <div class="group-dropdown__select">
+            <label for="group-type">Направление группы</label>
+            <select
+                id="group-type"
+                name="group-type"
+                class="group-dropdown__dropdown"
+            >
+                <option value="FD">Фронтенд разработка</option>
+                <option value="QA">Тестирование</option>
+                <option value="AD">Аналитика данных</option>
+                <option value="@@OTHER@@">Другое...</option>
+            </select>
+        </div>
+        <div class="group-dropdown__other group-dropdown__other_hidden">
+            <label for="title">Название</label>
+            <input
+                id="title"
+                name="title"
+                class="group-dropdown__other-input"
+            >
+        </div>
+    </div>
+    <div class="dropdown"></div>
+    <input class="suggest tooltip" data-tooltip="Город проживания">
+    <script src="./src/lib/template-engine.js"></script>
+    <script src="./src/username.js"></script>
+    <script src="./src/group-dropdown.js"></script>
+    <script src="./src/dropdown.js"></script>
+    <script src="./src/suggest.js"></script>
+    <script src="./src/tooltip.js"></script>
+    <script src="./src/inline-edit.js"></script>
+    <script src="./src/data/cities.js"></script>
+    <script>
+        const username = new Username(document.querySelector('.username'));
+
+        const groupDropdown = new GroupDropdown(document.querySelector('.group-dropdown'));
+
+        const dropdown = new Dropdown(
+            document.querySelector('.dropdown'),
+            {
+                title: 'Ваш любимый виджет',
+                menuItems: [{
+                    title: 'Тултип',
+                    value: 'tooltip',
+                }, {
+                    title: 'Саджест',
+                    value: 'suggest',
+                }, {
+                    title: 'Модальное окно',
+                    value: 'modal',
+                }],
+                otherInputTitle: 'Название виджета, который нравится: ',
+                otherMenuItemTitle: 'Ничего из вышеперечисленного',
+            }
+        );
+
+        const suggest = new Suggest(document.querySelector('.suggest'), {
+            data: cities.map(city => city.city),
+        });
+
+        const tooltip  = new Tooltip(document.querySelector('.tooltip'));
+
+        const inlineEdit = new InlineEdit(document.querySelector('.inline-edit'));
+    </script>
+</body>
+
+</html>
