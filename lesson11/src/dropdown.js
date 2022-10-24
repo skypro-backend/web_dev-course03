@@ -18,6 +18,10 @@ class Dropdown {
 
         this.render(options);
 
+        this.dropdown = this.element.querySelector('.group-dropdown__dropdown');
+        this.other = this.element.querySelector('.group-dropdown__other');
+        this.input = this.element.querySelector('.group-dropdown__other-input');
+
         this.onDropdownChange = this.onDropdownChange.bind(this);
 
         this.dropdown.addEventListener('change', this.onDropdownChange);
@@ -58,17 +62,22 @@ Dropdown.template = (options, id) => ({
                 },
                 {
                     tag: 'select',
+                    cls: 'group-dropdown__dropdown',
                     attrs: {
                         id: 'dropdown-select-' + id,
                         cls: 'group-dropdown__dropdown',
                     },
                     content: options.menuItems.map(menuItem => ({
                         tag: 'option',
-                        value: menuItem.value,
+                        attrs: {
+                            value: menuItem.value,
+                        },
                         content: menuItem.title,
                     })).concat({
                         tag: 'option',
-                        value: OTHER_VALUE,
+                        attrs: {
+                            value: OTHER_VALUE,
+                        },
                         content: options.otherMenuItemTitle,
                     }),
                 }
