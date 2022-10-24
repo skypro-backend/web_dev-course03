@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <style>
+        .user__error {
+            color: lightcoral;
+        }
+
+        .user__error_hidden {
+            display: none;
+        }
+
+        .user__loader_hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>AJAX <i class="fa fa-graduation-cap" aria-hidden="true"></i></h1>
+    <article class="user">
+        <button class="user__login">Войти</button>
+        <i class="user__loader user__loader_hidden fa fa-spinner fa-pulse fa-fw"></i>
+        <div class="user__error user__error_hidden"></div>
+    </article>
+    <button class="button-console">Кнопка с выводом</button>
+    <script>
+        const user = document.querySelector('.user');
+        const userLogin = user.querySelector('.user__login');
+        const userLoader = user.querySelector('.user__loader');
+        const userError = user.querySelector('.user__error');
+
+        const buttonConsole = document.querySelector('.button-console');
+
+        buttonConsole.addEventListener('click', () => {
+            console.log('button console log');
+        });
+
+        function showUserData(userData) {
+            user.textContent = userData.username;
+        }
+
+        function showUserError(text = 'Неизвестная ошибка') {
+            userError.classList.remove('user__error_hidden');
+
+            userError.textContent = text;
+        }
+
+        function hideUserError(text = 'Неизвестная ошибка') {
+            userError.classList.add('user__error_hidden');
+        }
+
+        userLogin.addEventListener('click', () => {
+            // 1 выставляем интерфейсу состояние о том, что загрузка "в процессе"
+            userLogin.setAttribute('disabled', 'disabled');
+            userLoader.classList.remove('user__loader_hidden');
+            hideUserError();
+
+            // 2 создаем и настраиваем запрос
+            const request = new XMLHttpRequest();
+
+            request.open('GET', './user.json');
+            request.responseType = 'json';
+
+            // 3 подписываемся на событие load
+            request.onload = function (event) {
+                // 6 после того как запрос завершен
+                const target = event.target;
+
+                // 7 убираем из интерфейса состояние в процессе загрузки
+                userLoader.classList.add('user__loader_hidden');
+                userLogin.removeAttribute('disabled');
+
+                // 8 проверяем статус
+                if (target.status !== 200) {
+                    // 9.1 показ ошибки
+                    showUserError(target.statusText);
+
+                    return;
+                }
+
+                // 9 если всё хорошо, показываем данные в интерфейсе
+                showUserData(target.response);
+            }
+
+            // 4 подписываемся на событие error
+            request.onerror = function () {
+                // 6.1 запрос может сломаться
+                // 7.1 убираем из интерфейса состояние "в процессе загрузки"
+                userLoader.classList.add('user__loader_hidden');
+                userLogin.removeAttribute('disabled');
+
+                // 8.1 показываем ошибку
+                showUserError('Неизвестная ошибка сети');
+            }
+
+            // 5 отправляем запрос
+            request.send();
+        });
+    </script>
+</body>
+
+</html>
