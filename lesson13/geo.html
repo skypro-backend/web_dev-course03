@@ -30,6 +30,10 @@
         const geoLoader = geo.querySelector('.geo__loader');
 
         geoDetect.addEventListener('click', () => {
+
+            geoDetect.setAttribute('disabled', 'disabled');
+            geoLoader.classList.remove('geo__loader_hidden');
+
             navigator.geolocation.getCurrentPosition((data) => {
                 const { latitude, longitude } = data.coords;
 
@@ -37,6 +41,14 @@
 
                 request({
                     url: 'https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json',
+                    onSuccess: () => {
+                        geoDetect.remove();
+                        geoLoader.classList.add('geo__loader_hidden');
+                    },
+                    onError: () => {
+                        geoDetect.removeAttribute('disbled');
+                        geoLoader.classList.add('geo__loader_hidden');
+                    }
                 })
             });
         });
