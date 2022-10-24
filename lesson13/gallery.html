@@ -41,10 +41,13 @@
             request({
                 url: `gallery/image${currentImage}.json`,
                 onSuccess: (imageData) => {
-                    console.log(imageData);
+                    galleryImage.src = imageData.image;
+                    galleryTitle.textContent = imageData.title;
                 }
             });
         }
+
+        renderCurrentImage();
     </script>
 </body>
 
