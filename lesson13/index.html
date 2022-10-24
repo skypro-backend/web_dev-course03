@@ -66,16 +66,22 @@
         const anotherRequestButton = document.querySelector('.another-request-button');
 
         anotherRequestButton.addEventListener('click', () => {
-            request((data) => {
-                console.log(data.rating);
+            request({
+                url: 'user.json',
+                onSuccess: (data) => {
+                    console.log(data.rating);
+                }
             });
         });
 
         const yetAnotherRequestButton = document.querySelector('.yet-another-request-button');
 
         yetAnotherRequestButton.addEventListener('click', () => {
-            request((data) => {
-                console.log(data.professions);
+            request({
+                url: 'user.json',
+                onSuccess: (data) => {
+                    console.log(data.professions);
+                }
             });
         });
     </script>
