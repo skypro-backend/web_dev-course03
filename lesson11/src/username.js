@@ -8,6 +8,8 @@ class Username {
         this.guestCheckbox = this.element.querySelector('.username__as-guest-control');
         this.loginInput = this.element.querySelector('.username__login-control');
 
+        this.onCheckboxChange = this.onCheckboxChange.bind(this);
+
         this.guestCheckbox.addEventListener('change', this.onCheckboxChange);
     }
 
