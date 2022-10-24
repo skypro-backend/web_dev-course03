@@ -9,40 +9,50 @@
 </head>
 
 <body>
-    <button class="timer-button">
+    <button class="request-button">
         Сообщение скоро прибудет в консоль
     </button>
-    <button class="another-timer-button">
+    <button class="another-request-button">
         Сообщение очень скоро прибудет в консоль
     </button>
-    <button class="yet-another-timer-button">
+    <button class="yet-another-request-button">
         Сообщение прибудет не так скоро, как хотелось бы
     </button>
     <script>
-        const timerButton = document.querySelector('.timer-button');
+        const requestButton = document.querySelector('.request-button');
 
-        function delay(timeout, callback) {
-            setTimeout(callback, timeout);
+        function request(callback) {
+            const req = new XMLHttpRequest();
+
+            req.open('GET', 'user.json');
+            req.responseType = 'json';
+
+            req.onload = function (event) {
+                const target = event.target;
+
+                callback(target.response);
+            }
+
+            req.send();
         }
 
-        timerButton.addEventListener('click', () => {
-            debugger;
-            delay(3000, () => {
-                console.log('timer click');
+        requestButton.addEventListener('click', () => {
+            request((data) => {
+                console.log(data);
             });
         });
 
-        const anotherTimerButton = document.querySelector('.another-timer-button');
+        const anotherRequestButton = document.querySelector('.another-request-button');
 
-        anotherTimerButton.addEventListener('click', () => {
+        anotherRequestButton.addEventListener('click', () => {
             delay(1000, () => {
                 console.log('another timer click');
             });
         });
 
-        const yetAnotherTimerButton = document.querySelector('.yet-another-timer-button');
+        const yetAnotherRequestButton = document.querySelector('.yet-another-request-button');
 
-        yetAnotherTimerButton.addEventListener('click', () => {
+        yetAnotherRequestButton.addEventListener('click', () => {
             delay(5000, () => {
                 console.log('yet another timer click');
             });
