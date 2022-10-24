@@ -27,7 +27,8 @@ class LikeButton {
         request({
             url: this.liked ? 'dislike.json' : 'like.json',
             onSuccess: this.onLikeToggle,
-            onError: this.onRequestFinish
+            onError: this.onRequestFinish,
+            checkStatusInResponse: true
         })
     }
 
