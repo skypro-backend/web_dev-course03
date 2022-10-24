@@ -10,11 +10,27 @@
         .group-dropdown__other_hidden{
             display: none;
         }
+
+        .suggest__suggest-popup {
+            position: absolute;
+            padding: 2px 4px;
+            border: 1px solid #333;
+            background: #fff;
+        }
+
+        .suggest__suggest-popup-item {
+            margin: -2px 0;
+        }
+
+        .suggest__suggest-popup-item:hover {
+            background-color: bisque;
+        }
     </style>
 </head>
 
 <body>
     <h1>Типовые виджеты</h1>
+    <input class="suggest">
     <div class="username">
         <div class="username__login">
             <label for="login">Имя пользователя</label>
@@ -58,7 +74,6 @@
         </div>
     </div>
     <div class="dropdown"></div>
-    <input class="suggest">
     <script src="./src/lib/template-engine.js"></script>
     <script src="./src/username.js"></script>
     <script src="./src/group-dropdown.js"></script>
