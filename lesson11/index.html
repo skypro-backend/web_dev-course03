@@ -31,6 +31,19 @@
         .suggest__suggest-popup-item:hover {
             background-color: bisque;
         }
+
+        .tooltip__popup {
+            position: absolute;
+            padding: 4px 2px;
+            border: 1px solid #333;
+            border-radius: 3px;
+            box-shadow: #333 2px 2px 2px;
+            background: #fff;
+        }
+
+        .tooltip__popup_hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -79,12 +92,13 @@
         </div>
     </div>
     <div class="dropdown"></div>
-    <input class="suggest">
+    <input class="suggest tooltip" data-tooltip="Город проживания">
     <script src="./src/lib/template-engine.js"></script>
     <script src="./src/username.js"></script>
     <script src="./src/group-dropdown.js"></script>
     <script src="./src/dropdown.js"></script>
     <script src="./src/suggest.js"></script>
+    <script src="./src/tooltip.js"></script>
     <script src="./src/data/cities.js"></script>
     <script>
         const username = new Username(document.querySelector('.username'));
@@ -113,6 +127,8 @@
         const suggest = new Suggest(document.querySelector('.suggest'), {
             data: cities.map(city => city.city),
         });
+
+        const tooltip  = new Tooltip(document.querySelector('.tooltip'));
     </script>
 </body>
 
