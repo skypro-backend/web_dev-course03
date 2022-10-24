@@ -38,6 +38,21 @@
         let currentImage = 1;
 
         function renderCurrentImage() {
+            if (currentImage === 1) {
+                galleryBack.setAttribute('disabled', 'disabled');
+            } else {
+                galleryBack.removeAttribute('disabled');
+            }
+
+            galleryForward.setAttribute('disabled', 'disabled');
+
+            request({
+                url: `gallery/image${currentImage + 1}.json`,
+                onSuccess: (imageData) => {
+                    galleryForward.removeAttribute('disabled');
+                }
+            });
+
             request({
                 url: `gallery/image${currentImage}.json`,
                 onSuccess: (imageData) => {
