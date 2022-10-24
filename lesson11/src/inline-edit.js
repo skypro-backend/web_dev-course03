@@ -8,6 +8,8 @@ class InlineEdit {
 
         this.onOriginElementClick = this.onOriginElementClick.bind(this);
 
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+
         this.element.addEventListener('click', this.onOriginElementClick);
     }
 
@@ -29,6 +31,13 @@ class InlineEdit {
         event.preventDefault();
 
         console.log('submit');
+
+        const value = this.element.querySelector('.inline-edit___new-value').value;
+        this.element.innerHTML = '';
+        this.element.textContent = value;
+
+        this.element.addEventListener('click', this.onOriginElementClick);
+        this.element.removeEventListener('submit', this.onFormSubmit);
     }
 }
 
@@ -38,6 +47,7 @@ InlineEdit.formTemplate = (text) => {
         content: [
             {
                 tag: 'input',
+                cls: 'inline-edit___new-value',
                 attrs: {
                     value: text,
                 },
