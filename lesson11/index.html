@@ -48,7 +48,7 @@
 </head>
 
 <body>
-    <h1>Типовые виджеты</h1>
+    <h1 class="inline-edit">Типовые виджеты</h1>
     <div class="username">
         <div class="username__login">
             <label for="login">Имя пользователя</label>
@@ -99,6 +99,7 @@
     <script src="./src/dropdown.js"></script>
     <script src="./src/suggest.js"></script>
     <script src="./src/tooltip.js"></script>
+    <script src="./src/inline-edit.js"></script>
     <script src="./src/data/cities.js"></script>
     <script>
         const username = new Username(document.querySelector('.username'));
@@ -129,6 +130,8 @@
         });
 
         const tooltip  = new Tooltip(document.querySelector('.tooltip'));
+
+        const inlineEdit = new InlineEdit(document.querySelector('.inline-edit'));
     </script>
 </body>
 
