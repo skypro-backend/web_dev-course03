@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .group-dropdown__other_hidden{
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,6 +31,29 @@
                 name="as-guest"
                 class="username__as-guest-control"
                 type="checkbox"
+            >
+        </div>
+    </div>
+    <div class="group-dropdown">
+        <div class="group-dropdown__select">
+            <label for="group-type">Направление группы</label>
+            <select
+                id="group-type"
+                name="group-type"
+                class="group-dropdown__dropdown"
+            >
+                <option value="FD">Фронтенд разработка</option>
+                <option value="QA">Тестирование</option>
+                <option value="AD">Аналитика данных</option>
+                <option value="@@OTHER@@">Другое...</option>
+            </select>
+        </div>
+        <div class="group-dropdown__other group-dropdown__other_hidden">
+            <label for="title">Название</label>
+            <input
+                id="title"
+                name="title"
+                class="group-dropdown__other-input"
             >
         </div>
     </div>
