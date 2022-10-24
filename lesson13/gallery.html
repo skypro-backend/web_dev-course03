@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .gallery__image {
+            max-width: 100%;
+        }
+
+        .gallery__actions {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="gallery">
+        <img class="gallery__image">
+        <h2 class="gallery__title"></h2>
+        <div class="gallery__actions">
+            <button class="gallery__back">⏪</button>
+            <button class="gallery__forward">⏩</button>
+        </div>
+    </main>
+    <script src="./src/lib/request.js"></script>
+    <script>
+        const gallery = document.querySelector('.gallery');
+        const galleryImage = document.querySelector('.gallery__image');
+        const galleryTitle = document.querySelector('.gallery__title');
+        const galleryBack = document.querySelector('.gallery__back');
+        const galleryForward = document.querySelector('.gallery__forward');
+
+        let currentImage = 1;
+
+        function renderCurrentImage() {
+            if (currentImage === 1) {
+                galleryBack.setAttribute('disabled', 'disabled');
+            } else {
+                galleryBack.removeAttribute('disabled');
+            }
+
+            galleryForward.setAttribute('disabled', 'disabled');
+
+            request({
+                url: `gallery/image${currentImage + 1}.json`,
+                onSuccess: (imageData) => {
+                    galleryForward.removeAttribute('disabled');
+                }
+            });
+
+            request({
+                url: `gallery/image${currentImage}.json`,
+                onSuccess: (imageData) => {
+                    galleryImage.src = imageData.image;
+                    galleryTitle.textContent = imageData.title;
+                }
+            });
+        }
+
+        galleryBack.addEventListener('click', () => {
+            currentImage = currentImage - 1;
+
+            renderCurrentImage();
+        });
+
+        galleryForward.addEventListener('click', () => {
+            currentImage = currentImage + 1;
+
+            renderCurrentImage();
+        });
+
+        renderCurrentImage();
+    </script>
+</body>
+
+</html>

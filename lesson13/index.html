@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="request-button">
+        Узнайте имя пользователя
+    </button>
+    <button class="another-request-button">
+        Узнайте рейтинг
+    </button>
+    <button class="yet-another-request-button">
+        Узнайте профессии
+    </button>
+    <script src="./src/lib/request.js"></script>
+    <script>
+        const requestButton = document.querySelector('.request-button');
+
+        requestButton.addEventListener('click', () => {
+            request({
+                url: 'user.json',
+                onSuccess: (data) => {
+                    console.log(data.username);
+                }
+            });
+        });
+
+        const anotherRequestButton = document.querySelector('.another-request-button');
+
+        anotherRequestButton.addEventListener('click', () => {
+            request({
+                url: 'user.json',
+                onSuccess: (data) => {
+                    console.log(data.rating);
+                }
+            });
+        });
+
+        const yetAnotherRequestButton = document.querySelector('.yet-another-request-button');
+
+        yetAnotherRequestButton.addEventListener('click', () => {
+            request({
+                url: 'user.json',
+                onSuccess: (data) => {
+                    console.log(data.professions);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
