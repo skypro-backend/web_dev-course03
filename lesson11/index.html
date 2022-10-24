@@ -57,12 +57,34 @@
             >
         </div>
     </div>
+    <div class="dropdown"></div>
+    <script src="./src/lib/template-engine.js"></script>
     <script src="./src/username.js"></script>
     <script src="./src/group-dropdown.js"></script>
+    <script src="./src/dropdown.js"></script>
     <script>
         const username = new Username(document.querySelector('.username'));
 
         const groupDropdown = new GroupDropdown(document.querySelector('.group-dropdown'));
+
+        const dropdown = new Dropdown(
+            document.querySelector('.dropdown'),
+            {
+                title: 'Ваш любимый виджет',
+                menuItems: [{
+                    title: 'Тултип',
+                    value: 'tooltip',
+                }, {
+                    title: 'Саджест',
+                    value: 'suggest',
+                }, {
+                    title: 'Модальное окно',
+                    value: 'modal',
+                }],
+                otherInputTitle: 'Название виджета, который нравится: ',
+                otherMenuItemTitle: 'Ничего из вышеперечисленного',
+            }
+        );
     </script>
 </body>
 
