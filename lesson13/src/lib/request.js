@@ -4,6 +4,7 @@ function request({
     method = 'GET',
     url,
     type = 'json',
+    checkStatusInResponse = false,
     onSuccess = noop,
     onError = noop
 }) {
@@ -16,6 +17,12 @@ function request({
         const target = event.target;
 
         if (target.status !== 200) {
+            onError(target.statusText);
+
+            return;
+        }
+
+        if (checkStatusInResponse && target.response.status !== 'ok') {
             onError(target.statusText);
 
             return;
