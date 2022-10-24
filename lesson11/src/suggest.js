@@ -12,62 +12,92 @@ class Suggest {
         this.suggestData = options.data;
 
         this.onInput = this.onInput.bind(this);
+        this.onSuggestClick = this.onSuggestClick.bind(this);
 
+        this.renderSuggestPopup();
+
+        this.suggest.addEventListener('click', this.onSuggestClick);
         this.element.addEventListener('input', this.onInput);
     }
 
     onInput() {
+        if (this.element.value  === '') {
+            this.hideSuggest();
+
+            return;
+        }
+
         const filteredData = this.suggestData.filter(
             item => item.startsWith(this.element.value)
         );
 
         if (filteredData.length) {
-            this.renderSuggest(filteredData);
+            this.renderSuggestItems(filteredData);
         } else {
-            this.removeSuggest();
+            this.hideSuggest();
         }
     }
 
-    removeSuggest() {
-        if (!this.suggest) {
+    onSuggestClick(event) {
+        const target = event.target;
+
+        if (!target.classList.contains('suggest__suggest-popup-item')) {
             return;
         }
 
-        this.suggest.remove();
-        this.suggest = undefined;
+        this.element.value = target.dataset.suggest;
+        this.hideSuggest();
+    }
+
+    hideSuggest() {
+        this.suggest.classList.add('suggest__suggest-popup_hidden');
+    }
+
+    showSuggest() {
+        this.suggest.classList.remove('suggest__suggest-popup_hidden');
     }
 
     clearSuggest() {
-        if (!this.suggest) {
-            return;
-        }
-        
         this.suggest.innerHTML = '';
     }
 
-    renderSuggest(data) {  
-        this.clearSuggest();
+    renderSuggestPopup(){
         this.suggest = templateEngine(
-            Suggest.suggestTemplate(data)
+            Suggest.suggestPopupTemplate(true)
         );
 
         document.body.appendChild(this.suggest);
+    }
+
+    renderSuggestItems(data) {  
+        this.clearSuggest();
+        const suggestItems = templateEngine(
+            Suggest.suggestItemsTemplate(data)
+        );
+
+        this.suggest.appendChild(suggestItems);
 
         const coords = this.element.getBoundingClientRect();
 
         const { bottom, left } = coords;
 
-        this.suggest.style.top = bottom + 2 + 'px';
-        this.suggest.style.left = left + 'px';
+        this.suggest.style.top = bottom + window.scrollY + 2 + 'px';
+        this.suggest.style.left = left + window.scrollX + 'px';
+
+        this.showSuggest();
     }
 }
 
-Suggest.suggestTemplate = (suggests) => ({
+Suggest.suggestPopupTemplate = (hidden) => ({
     tag: 'div',
-    cls: 'suggest__suggest-popup',
-    content: suggests.map(suggest => ({
+    cls: ['suggest__suggest-popup', hidden ? 'suggest__suggest-popup_hidden': undefined],
+});
+
+Suggest.suggestItemsTemplate = (suggests) => suggests.map(suggest => ({
         tag: 'div',
         cls: 'suggest__suggest-popup-item',
+        attrs: {
+            'data-suggest': suggest,
+        },
         content: suggest,
-    })),
-});
+    }));

@@ -18,6 +18,10 @@
             background: #fff;
         }
 
+        .suggest__suggest-popup_hidden {
+            display: none;
+        }
+
         .suggest__suggest-popup-item {
             cursor: pointer;
             padding: 2px 2px;
@@ -32,7 +36,6 @@
 
 <body>
     <h1>Типовые виджеты</h1>
-    <input class="suggest">
     <div class="username">
         <div class="username__login">
             <label for="login">Имя пользователя</label>
@@ -76,6 +79,7 @@
         </div>
     </div>
     <div class="dropdown"></div>
+    <input class="suggest">
     <script src="./src/lib/template-engine.js"></script>
     <script src="./src/username.js"></script>
     <script src="./src/group-dropdown.js"></script>
