@@ -12,6 +12,12 @@
     <button class="timer-button">
         Сообщение скоро прибудет в консоль
     </button>
+    <button class="another-timer-button">
+        Сообщение очень скоро прибудет в консоль
+    </button>
+    <button class="yet-another-timer-button">
+        Сообщение прибудет не так скоро, как хотелось бы
+    </button>
     <script>
         const timerButton = document.querySelector('.timer-button');
 
@@ -19,6 +25,22 @@
             setTimeout(() => {
                 console.log('timer click');
             }, 3000);
+        });
+
+        const anotherTimerButton = document.querySelector('.another-timer-button');
+
+        anotherTimerButton.addEventListener('click', () => {
+            setTimeout(() => {
+                console.log('another timer click');
+            }, 1000);
+        });
+
+        const yetAnotherTimerButton = document.querySelector('.yet-another-timer-button');
+
+        yetAnotherTimerButton.addEventListener('click', () => {
+            setTimeout(() => {
+                console.log('yet another timer click');
+            }, 5000);
         });
     </script>
 </body>
