@@ -7,6 +7,10 @@ class Tooltip {
         this.element = element;
 
         this.renderTooltipPopup();
+
+        this.onMouseOver = this.onMouseOver.bind(this);
+
+        this.element.addEventListener('mouseenter', this.onMouseOver);
     }
 
     onMouseOver() {
@@ -14,7 +18,7 @@ class Tooltip {
 
         this.timer = setTimeout(() => {
             this.hideTooltip();
-        });
+        }, 5000);
     }
 
     showTooltip() {
