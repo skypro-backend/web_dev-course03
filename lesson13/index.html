@@ -21,26 +21,31 @@
     <script>
         const timerButton = document.querySelector('.timer-button');
 
+        function delay(timeout, callback) {
+            setTimeout(callback, timeout);
+        }
+
         timerButton.addEventListener('click', () => {
-            setTimeout(() => {
+            debugger;
+            delay(3000, () => {
                 console.log('timer click');
-            }, 3000);
+            });
         });
 
         const anotherTimerButton = document.querySelector('.another-timer-button');
 
         anotherTimerButton.addEventListener('click', () => {
-            setTimeout(() => {
+            delay(1000, () => {
                 console.log('another timer click');
-            }, 1000);
+            });
         });
 
         const yetAnotherTimerButton = document.querySelector('.yet-another-timer-button');
 
         yetAnotherTimerButton.addEventListener('click', () => {
-            setTimeout(() => {
+            delay(5000, () => {
                 console.log('yet another timer click');
-            }, 5000);
+            });
         });
     </script>
 </body>
