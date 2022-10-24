@@ -17,6 +17,50 @@ class Suggest {
     }
 
     onInput() {
-        console.log(this.suggestData.filter(item => item.startsWith(this.element.value)));
+        const filteredData = this.suggestData.filter(
+            item => item.startsWith(this.element.value)
+        );
+
+        if (filteredData.length) {
+            this.renderSuggest(filteredData);
+        } else {
+            this.removeSuggest();
+        }
+    }
+
+    removeSuggest() {
+        if (!this.suggest) {
+            return;
+        }
+
+        this.suggest.remove();
+        this.suggest = undefined;
+    }
+
+    clearSuggest() {
+        if (!this.suggest) {
+            return;
+        }
+        
+        this.suggest.innerHTML = '';
+    }
+
+    renderSuggest(data) {  
+        this.clearSuggest();
+        this.suggest = templateEngine(
+            Suggest.suggestTemplate(data)
+        );
+
+        document.body.appendChild(this.suggest);
     }
 }
+
+Suggest.suggestTemplate = (suggests) => ({
+    tag: 'div',
+    cls: 'suggest__suggest-popup',
+    content: suggests.map(suggest => ({
+        tag: 'div',
+        cls: 'suggest__suggest-popup-item',
+        content: suggest,
+    })),
+});
