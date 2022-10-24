@@ -7,17 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <style>
+        .user__loader_hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <h1>AJAX <i class="fa fa-graduation-cap" aria-hidden="true"></i></h1>
     <article class="user">
         <button class="user__login">Войти</button>
+        <i class="user__loader user__loader_hidden fa fa-spinner fa-pulse fa-fw"></i>
     </article>
     <button class="button-console">Кнопка с выводом</button>
     <script>
         const user = document.querySelector('.user');
-        const userLogin = document.querySelector('.user__login');
+        const userLogin = user.querySelector('.user__login');
+        const userLoader = user.querySelector('.user__loader');
 
         const buttonConsole = document.querySelector('.button-console');
 
@@ -30,6 +37,9 @@
         }
 
         userLogin.addEventListener('click', () => {
+            userLogin.setAttribute('disabled', 'disabled');
+            userLoader.classList.remove('user__loader_hidden');
+
             const request = new XMLHttpRequest();
 
             request.open('GET', './user.json');
@@ -37,6 +47,8 @@
 
             request.onload = function (event) {
                 const target = event.target;
+                userLoader.classList.add('user__loader_hidden');
+                userLogin.removeAttribute('disabled');
 
                 showUserData(target.response);
             }
