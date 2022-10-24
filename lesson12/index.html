@@ -8,6 +8,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <style>
+        .user__error {
+            color: lightcoral;
+        }
+
+        .user__error_hidden {
+            display: none;
+        }
+
         .user__loader_hidden {
             display: none;
         }
@@ -19,12 +27,14 @@
     <article class="user">
         <button class="user__login">Войти</button>
         <i class="user__loader user__loader_hidden fa fa-spinner fa-pulse fa-fw"></i>
+        <div class="user__error user__error_hidden"></div>
     </article>
     <button class="button-console">Кнопка с выводом</button>
     <script>
         const user = document.querySelector('.user');
         const userLogin = user.querySelector('.user__login');
         const userLoader = user.querySelector('.user__loader');
+        const userError = user.querySelector('.user__error');
 
         const buttonConsole = document.querySelector('.button-console');
 
@@ -36,9 +46,20 @@
             user.textContent = userData.username;
         }
 
+        function showUserError(text = 'Неизвестная ошибка') {
+            userError.classList.remove('user__error_hidden');
+
+            userError.textContent = text;
+        }
+
+        function hideUserError(text = 'Неизвестная ошибка') {
+            userError.classList.add('user__error_hidden');
+        }
+
         userLogin.addEventListener('click', () => {
             userLogin.setAttribute('disabled', 'disabled');
             userLoader.classList.remove('user__loader_hidden');
+            hideUserError();
 
             const request = new XMLHttpRequest();
 
@@ -47,8 +68,15 @@
 
             request.onload = function (event) {
                 const target = event.target;
+
                 userLoader.classList.add('user__loader_hidden');
                 userLogin.removeAttribute('disabled');
+
+                if (target.status !== 200) {
+                    showUserError(target.statusText);
+
+                    return;
+                }
 
                 showUserData(target.response);
             }
