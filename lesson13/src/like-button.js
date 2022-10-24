@@ -8,10 +8,18 @@ class LikeButton {
 
         this.liked = liked;
 
+        this.onClick = this.onClick.bind(this);
+
         this.render();
+
+        this.element.addEventListener('click', this.onClick);
     }
 
     render() {
         this.element.textContent = this.liked ? '❤️' : '💔';
+    }
+
+    onClick() {
+        console.log('click ♥');
     }
 }
