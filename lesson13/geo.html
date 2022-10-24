@@ -41,9 +41,11 @@
 
                 request({
                     url: 'https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json',
-                    onSuccess: () => {
+                    onSuccess: (data) => {
                         geoDetect.remove();
                         geoLoader.classList.add('geo__loader_hidden');
+
+                        console.log(data);
                     },
                     onError: () => {
                         geoDetect.removeAttribute('disbled');
