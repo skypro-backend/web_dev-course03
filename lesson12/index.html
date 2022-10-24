@@ -13,9 +13,16 @@
     <article class="user">
         <button class="user__login">Войти</button>
     </article>
+    <button class="button-console">Кнопка с выводом</button>
     <script>
         const user = document.querySelector('.user');
         const userLogin = document.querySelector('.user__login');
+
+        const buttonConsole = document.querySelector('.button-console');
+
+        buttonConsole.addEventListener('click', () => {
+            console.log('button console log');
+        });
 
         userLogin.addEventListener('click', () => {
             const request = new XMLHttpRequest();
