@@ -21,24 +21,45 @@
     <script>
         const requestButton = document.querySelector('.request-button');
 
-        function request(callback) {
+        const noop = () => { };
+
+        function request({
+            method = 'GET',
+            url,
+            type = 'json',
+            onSuccess = noop,
+            onError = noop
+        }) {
             const req = new XMLHttpRequest();
 
-            req.open('GET', 'user.json');
-            req.responseType = 'json';
+            req.open(method, url);
+            req.responseType = type;
 
             req.onload = function (event) {
                 const target = event.target;
 
-                callback(target.response);
+                if (target.status !== 200) {
+                    onError(target.statusText);
+
+                    return;
+                }
+
+                onSuccess(target.response);
+            }
+
+            req.onerror = function () {
+                onError();
             }
 
             req.send();
         }
 
         requestButton.addEventListener('click', () => {
-            request((data) => {
-                console.log(data.username);
+            request({
+                url: 'user.json',
+                onSuccess: (data) => {
+                    console.log(data.username);
+                }
             });
         });
 
