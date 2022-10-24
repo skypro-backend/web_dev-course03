@@ -14,13 +14,20 @@
         <button class="user__login">Войти</button>
     </article>
     <script>
-        const request = new XMLHttpRequest();
+        const user = document.querySelector('.user');
+        const userLogin = document.querySelector('.user__login');
 
-        request.open('GET', './user.json', false);
+        userLogin.addEventListener('click', () => {
+            const request = new XMLHttpRequest();
 
-        request.send();
+            request.open('GET', './user.json', false);
 
-        console.log(request.responseText);
+            request.send();
+
+            const data = JSON.parse(request.responseText);
+
+            user.textContent = data.username;
+        });
     </script>
 </body>
 
