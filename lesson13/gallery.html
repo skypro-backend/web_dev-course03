@@ -47,6 +47,18 @@
             });
         }
 
+        galleryBack.addEventListener('click', () => {
+            currentImage = currentImage - 1;
+
+            renderCurrentImage();
+        });
+
+        galleryForward.addEventListener('click', () => {
+            currentImage = currentImage + 1;
+
+            renderCurrentImage();
+        });
+
         renderCurrentImage();
     </script>
 </body>
