@@ -52,6 +52,13 @@ class Suggest {
         );
 
         document.body.appendChild(this.suggest);
+
+        const coords = this.element.getBoundingClientRect();
+
+        const { bottom, left } = coords;
+
+        this.suggest.style.top = bottom + 2 + 'px';
+        this.suggest.style.left = left + 'px';
     }
 }
 
