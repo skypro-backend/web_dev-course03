@@ -24,6 +24,10 @@
             console.log('button console log');
         });
 
+        function showUserData(userData) {
+            user.textContent = userData.username;
+        }
+
         userLogin.addEventListener('click', () => {
             const request = new XMLHttpRequest();
 
@@ -33,12 +37,10 @@
             request.onload = function (event) {
                 const target = event.target;
 
-                console.log(target.response);
+                showUserData(target.response);
             }
 
             request.send();
-
-            console.log(request.responseText);
         });
     </script>
 </body>
