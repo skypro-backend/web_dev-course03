@@ -28,11 +28,12 @@
             const request = new XMLHttpRequest();
 
             request.open('GET', './user.json');
+            request.responseType = 'json';
 
             request.onload = function (event) {
                 const target = event.target;
 
-                console.log(target.responseText);
+                console.log(target.response);
             }
 
             request.send();
