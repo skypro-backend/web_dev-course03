@@ -16,6 +16,8 @@ class Username {
     }
 
     onCheckboxChange() {
+        console.log(this);
+        console.log(this.guestCheckbox);
         if (this.guestCheckbox.checked) {
             this.loginInput.setAttribute('disabled', 'disabled');
         } else {
