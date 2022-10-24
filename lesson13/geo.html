@@ -19,7 +19,7 @@
     <div class="geo">
         <button class="geo__detect">Где я?</button>
         <i class="geo__loader geo__loader_hidden fa fa-spinner fa-pulse fa-fw"></i>
-        <div class="geo__detect geo__detect_hidden"></div>
+        <div class="geo__display geo__display_hidden"></div>
     </div>
     <script src="./src/lib/request.js"></script>
     <script>
@@ -64,8 +64,13 @@
                         geoDetect.remove();
                         geoLoader.classList.add('geo__loader_hidden');
 
+                        const city = detectNearestCity(latitude, longitude, data)
+
                         console.log(data);
-                        console.log(detectNearestCity(latitude, longitude, data));
+                        console.log(city);
+
+                        geoDisplay.textContent = city;
+                        geoDisplay.classList.remove('geo__detect_hidden');
                     },
                     onError: () => {
                         geoDetect.removeAttribute('disbled');
