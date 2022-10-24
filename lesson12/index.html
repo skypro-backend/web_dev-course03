@@ -27,13 +27,17 @@
         userLogin.addEventListener('click', () => {
             const request = new XMLHttpRequest();
 
-            request.open('GET', './user.json', false);
+            request.open('GET', './user.json');
+
+            request.onload = function (event) {
+                const target = event.target;
+
+                console.log(target.responseText);
+            }
 
             request.send();
 
-            const data = JSON.parse(request.responseText);
-
-            user.textContent = data.username;
+            console.log(request.responseText);
         });
     </script>
 </body>
