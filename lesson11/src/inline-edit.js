@@ -21,6 +21,14 @@ class InlineEdit {
         ));
 
         this.element.removeEventListener('click', this.onOriginElementClick);
+
+        this.element.addEventListener('submit', this.onFormSubmit);
+    }
+
+    onFormSubmit(event) {
+        event.preventDefault();
+
+        console.log('submit');
     }
 }
 
