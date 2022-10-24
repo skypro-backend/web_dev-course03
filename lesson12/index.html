@@ -81,6 +81,13 @@
                 showUserData(target.response);
             }
 
+            request.onerror = function () {
+                userLoader.classList.add('user__loader_hidden');
+                userLogin.removeAttribute('disabled');
+
+                showUserError('Неизвестная ошибка сети');
+            }
+
             request.send();
         });
     </script>
