@@ -29,6 +29,25 @@
         const geoDisplay = geo.querySelector('.geo__display');
         const geoLoader = geo.querySelector('.geo__loader');
 
+        function detectNearestCity(lat, lng, cities) {
+            let minCityIndex = undefined;
+            let minDistance = Infinity;
+
+            for (let i = 0; i < cities.length; i++) {
+                const city = cities[i];
+                const cityLat = Number(city.lat);
+                const cityLng = Number(city.lng);
+                const distance = (lat - cityLat) ** 2 + (lng - cityLng) ** 2;
+
+                if (distance < minDistance) {
+                    minCityIndex = i;
+                    minDistance = distance;
+                }
+            }
+
+            return cities[minCityIndex].name;
+        }
+
         geoDetect.addEventListener('click', () => {
 
             geoDetect.setAttribute('disabled', 'disabled');
@@ -46,6 +65,7 @@
                         geoLoader.classList.add('geo__loader_hidden');
 
                         console.log(data);
+                        console.log(detectNearestCity(latitude, longitude, data));
                     },
                     onError: () => {
                         geoDetect.removeAttribute('disbled');
