@@ -21,6 +21,7 @@
         <i class="geo__loader geo__loader_hidden fa fa-spinner fa-pulse fa-fw"></i>
         <div class="geo__detect geo__detect_hidden"></div>
     </div>
+    <script src="./src/lib/request.js"></script>
     <script>
         const geo = document.querySelector('.geo');
 
@@ -33,6 +34,10 @@
                 const { latitude, longitude } = data.coords;
 
                 console.log(latitude, longitude);
+
+                request({
+                    url: 'https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json',
+                })
             });
         });
     </script>
