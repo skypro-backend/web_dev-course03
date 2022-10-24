@@ -10,13 +10,13 @@
 
 <body>
     <button class="request-button">
-        Сообщение скоро прибудет в консоль
+        Узнайте имя пользователя
     </button>
     <button class="another-request-button">
-        Сообщение очень скоро прибудет в консоль
+        Узнайте рейтинг
     </button>
     <button class="yet-another-request-button">
-        Сообщение прибудет не так скоро, как хотелось бы
+        Узнайте профессии
     </button>
     <script>
         const requestButton = document.querySelector('.request-button');
@@ -38,23 +38,23 @@
 
         requestButton.addEventListener('click', () => {
             request((data) => {
-                console.log(data);
+                console.log(data.username);
             });
         });
 
         const anotherRequestButton = document.querySelector('.another-request-button');
 
         anotherRequestButton.addEventListener('click', () => {
-            delay(1000, () => {
-                console.log('another timer click');
+            request((data) => {
+                console.log(data.rating);
             });
         });
 
         const yetAnotherRequestButton = document.querySelector('.yet-another-request-button');
 
         yetAnotherRequestButton.addEventListener('click', () => {
-            delay(5000, () => {
-                console.log('yet another timer click');
+            request((data) => {
+                console.log(data.professions);
             });
         });
     </script>
