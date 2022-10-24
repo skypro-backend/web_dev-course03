@@ -57,37 +57,50 @@
         }
 
         userLogin.addEventListener('click', () => {
+            // 1 выставляем интерфейсу состояние о том, что загрузка "в процессе"
             userLogin.setAttribute('disabled', 'disabled');
             userLoader.classList.remove('user__loader_hidden');
             hideUserError();
 
+            // 2 создаем и настраиваем запрос
             const request = new XMLHttpRequest();
 
             request.open('GET', './user.json');
             request.responseType = 'json';
 
+            // 3 подписываемся на событие load
             request.onload = function (event) {
+                // 6 после того как запрос завершен
                 const target = event.target;
 
+                // 7 убираем из интерфейса состояние в процессе загрузки
                 userLoader.classList.add('user__loader_hidden');
                 userLogin.removeAttribute('disabled');
 
+                // 8 проверяем статус
                 if (target.status !== 200) {
+                    // 9.1 показ ошибки
                     showUserError(target.statusText);
 
                     return;
                 }
 
+                // 9 если всё хорошо, показываем данные в интерфейсе
                 showUserData(target.response);
             }
 
+            // 4 подписываемся на событие error
             request.onerror = function () {
+                // 6.1 запрос может сломаться
+                // 7.1 убираем из интерфейса состояние "в процессе загрузки"
                 userLoader.classList.add('user__loader_hidden');
                 userLogin.removeAttribute('disabled');
 
+                // 8.1 показываем ошибку
                 showUserError('Неизвестная ошибка сети');
             }
 
+            // 5 отправляем запрос
             request.send();
         });
     </script>
