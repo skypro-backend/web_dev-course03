@@ -58,10 +58,13 @@
         </div>
     </div>
     <div class="dropdown"></div>
+    <input class="suggest">
     <script src="./src/lib/template-engine.js"></script>
     <script src="./src/username.js"></script>
     <script src="./src/group-dropdown.js"></script>
     <script src="./src/dropdown.js"></script>
+    <script src="./src/suggest.js"></script>
+    <script src="./src/data/cities.js"></script>
     <script>
         const username = new Username(document.querySelector('.username'));
 
@@ -85,6 +88,10 @@
                 otherMenuItemTitle: 'Ничего из вышеперечисленного',
             }
         );
+
+        const suggest = new Suggest(document.querySelector('.suggest'), {
+            data: cities.map(city => city.city),
+        });
     </script>
 </body>
 
