@@ -21,4 +21,8 @@ class GroupDropdown {
             this.other.classList.add('group-dropdown__other_hidden');
         }
     }
+
+    getValue() {
+        return this.dropdown.value === '@@OTHER@@' ? this.input.value : this.dropdown.value;
+    }
 }
