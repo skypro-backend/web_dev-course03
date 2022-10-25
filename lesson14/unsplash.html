@@ -34,7 +34,10 @@
             const id = unsplashIdUnput.value; //btpL_awNVdk, -_W5G39jVhs
 
             request({
-                url: `${UNSPLASH_API_BASE_URL}/photos/${id}?client_id=${API_KEY}`,
+                url: `${UNSPLASH_API_BASE_URL}/photos/${id}`,
+                params: {
+                    client_id: API_KEY,
+                },
                 onSuccess: (data) => {
                     unsplashImage.src = data.urls.full;
                 }
