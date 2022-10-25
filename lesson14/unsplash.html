@@ -39,6 +39,7 @@
                     client_id: API_KEY,
                 },
                 onSuccess: (data) => {
+                    unsplashImage.style.background = data.color;
                     unsplashImage.src = data.urls.full;
                 }
             });
