@@ -18,12 +18,17 @@
     <script>
         const catFacts = document.querySelector('.cat-facts');
         const catFactRequest = catFacts.querySelector('.cat-facts__request');
+        const catFactsFact = catFacts.querySelector('.cat-facts__fact');
+
+        function renderFact(fact) {
+            catFactsFact.textContent = fact;
+        }
 
         catFactRequest.addEventListener('click', () => {
             request({
                 url: 'https://meowfacts.herokuapp.com/',
                 onSuccess: (data) => {
-                    console.log(data);
+                    renderFact(data.data);
                 }
             })
         });
