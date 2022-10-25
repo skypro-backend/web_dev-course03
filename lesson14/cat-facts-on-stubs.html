@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Факты о котах на английском</h1>
+    <div class="cat-facts">
+        <p class="cat-facts__fact"></p>
+        <button class="cat-facts__request">Получить факт</button>
+    </div>
+    <script src="./lib/request.js"></script>
+    <script>
+        const catFacts = document.querySelector('.cat-facts');
+        const catFactRequest = catFacts.querySelector('.cat-facts__request');
+        const catFactsFact = catFacts.querySelector('.cat-facts__fact');
+
+        function renderFact(fact) {
+            catFactsFact.textContent = fact;
+        }
+
+        catFactRequest.addEventListener('click', () => {
+            request({
+                url: './stubs/cat-facts-random.json',
+                onSuccess: (data) => {
+                    renderFact(data.data);
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
