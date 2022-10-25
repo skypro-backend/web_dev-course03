@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .unsplash__image {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Отобразить фотографию</h1>
+    <div class="unsplash-image">
+        <img class="unsplash__image">
+        <input class="unsplash__id">
+        <button class="unsplash__button">Отобразить картинку</button>
+        <script src="./lib/request.js"></script>
+    </div>
+    <script>
+        const UNSPLASH_API_BASE_URL = 'https://api.unsplash.com';
+        const API_KEY = 'OphEZ-1zQSA2REeTRj6diooRQ-loTuLqRQZC_yarL7I';
+
+        const unsplash = document.querySelector('.unsplash-image');
+        const unsplashImage = unsplash.querySelector('.unsplash__image');
+        const unsplashIdUnput = unsplash.querySelector('.unsplash__id');
+        const unsplashButton = unsplash.querySelector('.unsplash__button');
+
+        unsplashButton.addEventListener('click', () => {
+            const id = unsplashIdUnput.value; //btpL_awNVdk, -_W5G39jVhs
+
+            request({
+                url: `${UNSPLASH_API_BASE_URL}/photos/${id}?client_id=${API_KEY}`,
+                onSuccess: (data) => {
+                    unsplashImage.src = data.urls.full;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
