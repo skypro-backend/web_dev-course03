@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JSONPlaceholder</h1>
+    <form class="post">
+        <input class="post__title post__field" placeholder="Post title" name="title">
+        <input class="post__body post__field" placeholder="Post body" name="body">
+        <button class="post__create">Создать</button>
+    </form>
+    <script src="./src/lib/request.js"></script>
+    <script>
+        const post = document.querySelector('.post');
+
+        post.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const fields = post.querySelectorAll('.post__field');
+
+            const data = {
+                userId: 1,
+            };
+
+            fields.forEach(field => {
+                data[field.name] = field.value;
+            })
+
+            request({
+                method: 'POST',
+                url: 'https://jsonplaceholder.typicode.com/posts',
+                requestType: 'json',
+                body: data,
+                okResponces: [201],
+                onSuccess: () => {
+                    post.textContent = 'Пост был создан!';
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="dict">
+        <input class="dict__word">
+        <div class="dict__meaning"></div>
+        <button class="dict__button">Узнать значение</button>
+    </div>
+    <script src="./src/lib/request.js"></script>
+    <script>
+        const API_KEY = 'dict.1.1.20220223T155457Z.5046e52f6a5095ee.ede41fc3d2f60783ad80353c7f147ade94ff328a';
+        const dict = document.querySelector('.dict');
+        const dictWord = dict.querySelector('.dict__word');
+        const dictMeaning = dict.querySelector('.dict__meaning');
+        const dictButton = dict.querySelector('.dict__button');
+
+        dictButton.addEventListener('click', () => {
+            request({
+                method: 'POST',
+                url: 'https://dictionary.yandex.net/api/v1/dicservice.json/lookup',
+                requestType: 'urlencoded',
+                body: {
+                    key: API_KEY,
+                    lang: 'ru-ru',
+                    text: dictWord.value
+                },
+                onSuccess: (data) => {
+                    console.log(data);
+                    const meaning = data.def[0].tr.map(t => t.text).join(', ');
+
+                    dictMeaning.textContent = meaning;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
