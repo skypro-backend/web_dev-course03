@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/vanillajs-datepicker/dist/css/datepicker.min.css">
+</head>
+
+<body>
+    <h1 class="title">jQuery</h1>
+    <input type="text" class="datepicker-field">
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+    <script src="./node_modules/vanillajs-datepicker/dist/js/locales/ru.js"></script>
+    <script>
+        $('.title').text('Я научилася использовать jQuery!');
+
+        const elem = document.querySelector('.datepicker-field');
+        const datepicker = new Datepicker(elem, {
+            format: 'dd.yy.yyyy',
+            language: 'ru',
+        });
+    </script>
+</body>
+
+</html>
