@@ -17,6 +17,7 @@
     "pickerjs": "1.2.1",
     "slim-select": "1.27.1",
     "sweetalert2": "11.4.9",
+    "tiny-slider": "2.9.4",
     "vanillajs-datepicker": "1.2.0"
   }
 }
