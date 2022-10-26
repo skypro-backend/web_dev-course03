@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./node_modules/notyf/notyf.min.css">
     <link rel="stylesheet" href="./node_modules/slim-select/dist/slimselect.min.css">
     <link rel="stylesheet" href="./node_modules/pickerjs/dist/picker.min.css">
+    <link rel="stylesheet" href="./node_modules/@kodie/colorfield/dist/colorfield.min.css">
 </head>
 
 <body>
@@ -50,6 +51,11 @@
     </form>
     <input class="credit-card">
     <input class="time-picker">
+    <div class="color-picker colorfield">
+        <input type="color" id="main-color" value="#5185b3">
+        <button type="button" class="colorfield-open colorfield-value"
+            data-colorfield-style-prop="background-color"></button>
+    </div>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/locales/ru.js"></script>
@@ -58,6 +64,7 @@
     <script src="./node_modules/slim-select/dist/slimselect.min.js"></script>
     <script src="./node_modules/maska/dist/maska.js"></script>
     <script src="./node_modules/pickerjs/dist/picker.min.js"></script>
+    <script src="./node_modules/@kodie/colorfield/dist/colorfield.min.js"></script>
     <script>
         $('.title').text('Я научилася использовать jQuery!');
 
@@ -110,6 +117,8 @@
         new Picker(document.querySelector('.time-picker'), {
             format: 'HH:mm',
         });
+
+        colorfield();
     </script>
 </body>
 
