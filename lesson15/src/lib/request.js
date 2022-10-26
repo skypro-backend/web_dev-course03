@@ -1,10 +1,12 @@
 const noop = () => { };
-const NO_PARAMS = {}
+const NO_PARAMS = {};
+const NO_HEADERS = {};
 
 function request({
     method = 'GET',
     url,
     params = NO_PARAMS,
+    headers = NO_HEADERS,
     body,
     type = 'json',
     checkStatusInResponse = false,
@@ -17,6 +19,11 @@ function request({
     const queryString = urlParams.toString();
 
     req.open(method, url + (queryString ? `?${queryString}` : ''));
+
+    Object.keys(headers).forEach((key) => {
+        req.setRequestHeader(key, headers[key]);
+    });
+
     req.responseType = type;
 
     req.onload = function (event) {
