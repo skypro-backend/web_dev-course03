@@ -19,14 +19,35 @@
         .dashboard__user-title {
             flex-grow: 1;
         }
+
+        .app {
+            padding-bottom: 60px;
+        }
+
+        .user {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
+            height: 60px;
+            padding: 4px;
+            border-top: 1px solid #333;
+            background-color: #fff;
+        }
     </style>
     <link rel="stylesheet" href="./css/font-awesome.min.css">
 </head>
 
-<body>
+<body class="app">
     <div class="dashboard">
 
     </div>
+    <form class="user">
+        <input class="user__first-name user__field" placeholder="First name" name="firstName">
+        <input class="user__last-name user__field" placeholder="Last name" name="lastName">
+        <button class="user__create">Создать</button>
+    </form>
     <script src="./src/lib/request.js"></script>
     <script src="./src/lib/template-engine.js"></script>
     <script src="./src/dashboard.js"></script>
