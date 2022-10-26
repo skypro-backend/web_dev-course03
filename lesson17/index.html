@@ -14,6 +14,38 @@
     <h1 class="title">jQuery</h1>
     <input type="text" class="datepicker-field">
     <button class="start">Начать процесс!</button>
+    <form class="modal-form">
+        <div class="form-field">
+            <label for="title">Заголовок окна</label>
+            <input name="title" id="title" class="modal-form__control">
+        </div>
+        <div class="form-field">
+            <label for="text">Текст сообщения</label>
+            <input name="text" id="text " class="modal-form__control">
+        </div>
+        <div class="form-field">
+            <label for="confirmButtonText">Надпись на кнопке</label>
+            <input name="confirmButtonText" id="confirmButtonText" class="modal-form__control">
+        </div>
+        <div class="form-field">
+            <label for="icon">Надпись на кнопке</label>
+            <select name="icon" id="icon" class="modal-form__control">
+                <option value="info">
+                    Информация
+                </option>
+                <option value="question">
+                    Вопрос
+                </option>
+                <option value="success">
+                    Успех
+                </option>
+                <option value="error">
+                    Ошибка
+                </option>
+            </select>
+            <button>Показать окно</button>
+        </div>
+    </form>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/locales/ru.js"></script>
@@ -42,6 +74,22 @@
             setTimeout(() => {
                 notyf.success('Процесс успешно заввершен')
             }, 5000)
+        });
+
+        const modalForm = document.querySelector('.modal-form');
+
+        modalForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formElements = modalForm.querySelectorAll('.modal-form__control');
+
+            const options = {};
+
+            formElements.forEach((el) => {
+                options[el.name] = el.value;
+            });
+
+            Swal.fire(options);
         });
     </script>
 </body>
