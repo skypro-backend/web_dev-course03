@@ -11,11 +11,17 @@
 
 <body>
     <h1 class="title">jQuery</h1>
+    <input type="text" class="datepicker-field">
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/locales/ru.js"></script>
     <script>
         $('.title').text('Я научилася использовать jQuery!');
+
+        const elem = document.querySelector('.datepicker-field');
+        const datepicker = new Datepicker(elem, {
+            // ... options
+        });
     </script>
 </body>
 
