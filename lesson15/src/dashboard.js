@@ -73,6 +73,21 @@ class Dashboard {
         });
 
     }
+
+    onUserFormSubmit(data) {
+        request({
+            method: 'POST',
+            url: `${Dashboard.BASE_API_URL}/user/create`,
+            headers: {
+                'app-id': Dashboard.APP_ID,
+            },
+            requestType: 'json',
+            body: data,
+            onSuccess: (data) => {
+                console.log(data);
+            }
+        });
+    }
 }
 
 Dashboard.APP_ID = '623a0cca3f69bb26dfa5d3f0';

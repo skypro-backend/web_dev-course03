@@ -46,15 +46,21 @@
     <form class="user">
         <input class="user__first-name user__field" placeholder="First name" name="firstName">
         <input class="user__last-name user__field" placeholder="Last name" name="lastName">
+        <input class="user__email user__field" placeholder="Email" name="email">
         <button class="user__create">Создать</button>
     </form>
     <script src="./src/lib/request.js"></script>
     <script src="./src/lib/template-engine.js"></script>
     <script src="./src/dashboard.js"></script>
+    <script src="./src/user-form.js"></script>
     <script>
         const dashboardElement = document.querySelector('.dashboard');
+        const userFormElement = document.querySelector('.user');
 
         const dashboard = new Dashboard(dashboardElement);
+        const userFrom = new UserForm(userFormElement);
+
+        userFrom.subscribe(dashboard.onUserFormSubmit);
     </script>
 </body>
 
