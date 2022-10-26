@@ -36,6 +36,10 @@
                 url: 'https://jsonplaceholder.typicode.com/posts',
                 requestType: 'json',
                 body: data,
+                okResponces: [201],
+                onSuccess: () => {
+                    post.textContent = 'Пост был создан!';
+                }
             });
         });
 

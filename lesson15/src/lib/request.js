@@ -1,6 +1,7 @@
 const noop = () => { };
 const NO_PARAMS = {};
 const NO_HEADERS = {};
+const OK_200 = [200];
 
 function request({
     method = 'GET',
@@ -10,6 +11,7 @@ function request({
     body,
     responseType = 'json',
     requestType = 'json',
+    okResponces = OK_200,
     checkStatusInResponse = false,
     onSuccess = noop,
     onError = noop
@@ -30,7 +32,7 @@ function request({
     req.onload = function (event) {
         const target = event.target;
 
-        if (target.status !== 200) {
+        if (!okResponces.includes(target.status)) {
             onError(target.statusText);
 
             return;
