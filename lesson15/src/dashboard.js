@@ -6,7 +6,11 @@ class Dashboard {
 
         this.element = element;
 
+        this.onInnerClick = this.onInnerClick.bind(this);
+
         this.getList();
+
+        this.element.addEventListener('click', this.onInnerClick);
     }
 
     getList(page = 0) {
@@ -41,6 +45,23 @@ class Dashboard {
             this.list.map(Dashboard.itemTemplate)
         ));
     }
+
+    onInnerClick(event) {
+        const target = event.target;
+
+        if (!target.classList.contains('dashboard__user-delete')) {
+            return;
+        }
+
+        this.handleDeleteItem(target.dataset.id);
+    }
+
+    handleDeleteItem(id) {
+
+        this.list = this.list.filter(item => item.id !== id);
+
+        this.render();
+    }
 }
 
 Dashboard.APP_ID = '623a0cca3f69bb26dfa5d3f0';
@@ -64,7 +85,10 @@ Dashboard.itemTemplate = (user) => ({
         },
         {
             tag: 'i',
-            cls: ['fa', 'fa-times'],
+            cls: ['dashboard__user-delete', 'fa', 'fa-times'],
+            attrs: {
+                'data-id': user.id,
+            }
         }
     ],
 });
