@@ -32,7 +32,7 @@
                 },
                 onSuccess: (data) => {
                     console.log(data);
-                    const meaning = data.def[0].tr.join(', ');
+                    const meaning = data.def[0].tr.map(t => t.text).join(', ');
 
                     dictMeaning.textContent = meaning;
                 }
