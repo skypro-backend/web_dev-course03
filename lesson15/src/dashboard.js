@@ -7,6 +7,7 @@ class Dashboard {
         this.element = element;
 
         this.onInnerClick = this.onInnerClick.bind(this);
+        this.onUserFormSubmit = this.onUserFormSubmit.bind(this);
 
         this.getList();
 
@@ -84,7 +85,9 @@ class Dashboard {
             requestType: 'json',
             body: data,
             onSuccess: (data) => {
-                console.log(data);
+                this.list.push(data);
+
+                this.render();
             }
         });
     }
