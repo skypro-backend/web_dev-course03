@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./node_modules/vanillajs-datepicker/dist/css/datepicker.min.css">
     <link rel="stylesheet" href="./node_modules/notyf/notyf.min.css">
     <link rel="stylesheet" href="./node_modules/slim-select/dist/slimselect.min.css">
+    <link rel="stylesheet" href="./node_modules/pickerjs/dist/picker.min.css">
 </head>
 
 <body>
@@ -48,6 +49,7 @@
         </div>
     </form>
     <input class="credit-card">
+    <input class="time-picker">
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/locales/ru.js"></script>
@@ -55,6 +57,7 @@
     <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="./node_modules/slim-select/dist/slimselect.min.js"></script>
     <script src="./node_modules/maska/dist/maska.js"></script>
+    <script src="./node_modules/pickerjs/dist/picker.min.js"></script>
     <script>
         $('.title').text('Я научилася использовать jQuery!');
 
@@ -102,6 +105,10 @@
 
         const mask = Maska.create('.credit-card', {
             mask: '#### #### #### ####'
+        });
+
+        new Picker(document.querySelector('.time-picker'), {
+            format: 'HH:mm',
         });
     </script>
 </body>
