@@ -32,6 +32,9 @@
                 },
                 onSuccess: (data) => {
                     console.log(data);
+                    const meaning = data.def[0].tr.join(', ');
+
+                    dictMeaning.textContent = meaning;
                 }
             });
         });
