@@ -94,6 +94,16 @@ class Dashboard {
     }
 
     onUserFormSubmit(data) {
+        if (this.editingId) {
+            this.handleEditUser(data);
+
+            return;
+        }
+
+        this.handleCreateUser(data);
+    }
+
+    handleCreateUser(data) {
         request({
             method: 'POST',
             url: `${Dashboard.BASE_API_URL}/user/create`,
@@ -104,6 +114,32 @@ class Dashboard {
             body: data,
             onSuccess: (data) => {
                 this.list.push(data);
+
+                this.render();
+            }
+        });
+    }
+
+    handleEditUser(data) {
+        request({
+            method: 'PUT',
+            url: `${Dashboard.BASE_API_URL}/user/${this.editingId}`,
+            headers: {
+                'app-id': Dashboard.APP_ID,
+            },
+            requestType: 'json',
+            body: data,
+            onSuccess: (data) => {
+                this.list.forEach(item => {
+                    if (item.id === data.id) {
+                        console.log(item);
+                        item.firstName = data.firstName;
+                        item.lastName = data.lastName;
+                        item.email = data.email;
+                    }
+                });
+
+                this.editingId = undefined;
 
                 this.render();
             }
