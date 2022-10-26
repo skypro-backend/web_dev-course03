@@ -54,13 +54,17 @@ function request({
     if (requestType === 'urlencoded') {
         req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-        const bodyParams = new URLSearchParams({
-            key: API_KEY,
-            lang: 'ru-ru',
-            text: dictWord.value
-        });
+        const bodyParams = new URLSearchParams(body);
 
         dataBody = bodyParams.toString();
+    }
+
+    if (requestType === 'json') {
+        req.setRequestHeader('Content-type', 'application/json');
+
+        const bodyParams = new URLSearchParams(body);
+
+        dataBody = JSON.stringify(body);
     }
 
     req.send(dataBody);
