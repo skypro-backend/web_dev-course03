@@ -6,6 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .dashboard__user {
+            display: flex;
+            align-items: center;
+        }
+
+        .dashboard__user-avatar {
+            border-radius: 50%;
+        }
+
+        .dashboard__user-title {
+            flex-grow: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,6 +27,7 @@
 
     </div>
     <script src="./src/lib/request.js"></script>
+    <script src="./src/lib/template-engine.js"></script>
     <script src="./src/dashboard.js"></script>
     <script>
         const dashboardElement = document.querySelector('.dashboard');
