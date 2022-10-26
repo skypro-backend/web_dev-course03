@@ -12,6 +12,7 @@
   "dependencies": {
     "jquery": "3.6.0",
     "notyf": "3.10.0",
+    "slim-select": "1.27.1",
     "sweetalert2": "11.4.9",
     "vanillajs-datepicker": "1.2.0"
   }

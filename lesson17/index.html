@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./node_modules/vanillajs-datepicker/dist/css/datepicker.min.css">
     <link rel="stylesheet" href="./node_modules/notyf/notyf.min.css">
+    <link rel="stylesheet" href="./node_modules/slim-select/dist/slimselect.min.css">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
         </div>
         <div class="form-field">
             <label for="icon">Надпись на кнопке</label>
-            <select name="icon" id="icon" class="modal-form__control">
+            <select name="icon" id="icon" class="select-icon-type modal-form__control">
                 <option value="info">
                     Информация
                 </option>
@@ -51,6 +52,8 @@
     <script src="./node_modules/vanillajs-datepicker/dist/js/locales/ru.js"></script>
     <script src="./node_modules/notyf/notyf.min.js"></script>
     <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="./node_modules/slim-select/dist/slimselect.min.js"></script>
+
     <script>
         $('.title').text('Я научилася использовать jQuery!');
 
@@ -90,6 +93,10 @@
             });
 
             Swal.fire(options);
+        });
+
+        new SlimSelect({
+            select: '.select-icon-type'
         });
     </script>
 </body>
