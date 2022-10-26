@@ -47,13 +47,14 @@
             <button>Показать окно</button>
         </div>
     </form>
+    <input class="credit-card">
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/locales/ru.js"></script>
     <script src="./node_modules/notyf/notyf.min.js"></script>
     <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="./node_modules/slim-select/dist/slimselect.min.js"></script>
-
+    <script src="./node_modules/maska/dist/maska.js"></script>
     <script>
         $('.title').text('Я научилася использовать jQuery!');
 
@@ -97,6 +98,10 @@
 
         new SlimSelect({
             select: '.select-icon-type'
+        });
+
+        const mask = Maska.create('.credit-card', {
+            mask: '#### #### #### ####'
         });
     </script>
 </body>
