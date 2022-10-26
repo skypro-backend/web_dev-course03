@@ -8,6 +8,7 @@ class UserForm {
         this.handlers = [];
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.onPutData = this.onPutData.bind(this);
 
         this.element.addEventListener('submit', this.onSubmit);
     }
@@ -28,5 +29,13 @@ class UserForm {
         });
 
         this.handlers.forEach(handler => handler(data));
+    }
+
+    onPutData(data) {
+        const fields = this.element.querySelectorAll('.user__field');
+
+        fields.forEach(field => {
+            field.value = data[field.name] || '';
+        });
     }
 }

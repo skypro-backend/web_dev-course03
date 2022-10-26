@@ -5,6 +5,7 @@ class Dashboard {
         }
 
         this.element = element;
+        this.handlers = [];
 
         this.onInnerClick = this.onInnerClick.bind(this);
         this.onUserFormSubmit = this.onUserFormSubmit.bind(this);
@@ -12,6 +13,10 @@ class Dashboard {
         this.getList();
 
         this.element.addEventListener('click', this.onInnerClick);
+    }
+
+    subscribe(handler) {
+        this.handlers.push(handler);
     }
 
     getList(page = 0) {
@@ -50,11 +55,13 @@ class Dashboard {
     onInnerClick(event) {
         const target = event.target;
 
-        if (!target.classList.contains('dashboard__user-delete')) {
-            return;
+        if (target.classList.contains('dashboard__user-delete')) {
+            this.handleDeleteItem(target.dataset.id);
         }
 
-        this.handleDeleteItem(target.dataset.id);
+        if (target.classList.contains('dashboard__user-edit')) {
+            this.handleEditItem(target.dataset.id);
+        }
     }
 
     handleDeleteItem(id) {
@@ -73,6 +80,17 @@ class Dashboard {
             }
         });
 
+    }
+
+    handleEditItem(id) {
+        this.editingId = id;
+        const item = this.list.find(item => item.id === id);
+
+        if (!item) {
+            return;
+        }
+
+        this.handlers.forEach(handler => handler(item));
     }
 
     onUserFormSubmit(data) {
@@ -111,6 +129,13 @@ Dashboard.itemTemplate = (user) => ({
             tag: 'div',
             cls: 'dashboard__user-title',
             content: user.firstName + ' ' + user.lastName,
+        },
+        {
+            tag: 'i',
+            cls: ['dashboard__user-edit', 'fa', 'fa-pencil'],
+            attrs: {
+                'data-id': user.id,
+            }
         },
         {
             tag: 'i',

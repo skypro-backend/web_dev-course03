@@ -58,9 +58,10 @@
         const userFormElement = document.querySelector('.user');
 
         const dashboard = new Dashboard(dashboardElement);
-        const userFrom = new UserForm(userFormElement);
+        const userForm = new UserForm(userFormElement);
 
-        userFrom.subscribe(dashboard.onUserFormSubmit);
+        userForm.subscribe(dashboard.onUserFormSubmit);
+        dashboard.subscribe(userForm.onPutData);
     </script>
 </body>
 
