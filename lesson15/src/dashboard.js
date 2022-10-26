@@ -57,10 +57,21 @@ class Dashboard {
     }
 
     handleDeleteItem(id) {
+        request({
+            method: 'DELETE',
+            url: `${Dashboard.BASE_API_URL}/user/${id}`,
+            headers: {
+                'app-id': Dashboard.APP_ID
+            },
+            onSuccess: (data) => {
+                console.log(data);
 
-        this.list = this.list.filter(item => item.id !== id);
+                this.list = this.list.filter(item => item.id !== id);
 
-        this.render();
+                this.render();
+            }
+        });
+
     }
 }
 
