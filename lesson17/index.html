@@ -13,6 +13,7 @@
 <body>
     <h1 class="title">jQuery</h1>
     <input type="text" class="datepicker-field">
+    <button class="start">Начать процесс!</button>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
     <script src="./node_modules/vanillajs-datepicker/dist/js/locales/ru.js"></script>
@@ -21,9 +22,25 @@
         $('.title').text('Я научилася использовать jQuery!');
 
         const elem = document.querySelector('.datepicker-field');
+
         const datepicker = new Datepicker(elem, {
             format: 'dd.yy.yyyy',
             language: 'ru',
+        });
+
+        const notyf = new Notyf();
+        const startButton = document.querySelector('.start');
+
+        startButton.addEventListener('click', () => {
+            notyf.open({
+                type: 'info',
+                background: 'blue',
+                message: 'Процесс запущен'
+            });
+
+            setTimeout(() => {
+                notyf.success('Процесс успешно заввершен')
+            }, 5000)
         });
     </script>
 </body>
