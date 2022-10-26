@@ -23,13 +23,16 @@
         const dictButton = dict.querySelector('.dict__button');
 
         dictButton.addEventListener('click', () => {
+            const bodyParams = new URLSearchParams({
+                key: API_KEY,
+                lang: 'ru-ru',
+                text: dictWord.value
+            });
+
             request({
+                method: 'POST',
                 url: 'https://dictionary.yandex.net/api/v1/dicservice.json/lookup',
-                params: {
-                    key: API_KEY,
-                    lang: 'ru-ru',
-                    text: dictWord.value
-                },
+                body: bodyParams.toString(),
                 onSuccess: (data) => {
                     console.log(data);
                     const meaning = data.def[0].tr.map(t => t.text).join(', ');

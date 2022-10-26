@@ -5,6 +5,7 @@ function request({
     method = 'GET',
     url,
     params = NO_PARAMS,
+    body,
     type = 'json',
     checkStatusInResponse = false,
     onSuccess = noop,
@@ -40,5 +41,5 @@ function request({
         onError();
     }
 
-    req.send();
+    req.send(body);
 }
