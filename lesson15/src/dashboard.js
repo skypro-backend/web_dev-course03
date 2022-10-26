@@ -61,6 +61,10 @@ Dashboard.itemTemplate = (user) => ({
             tag: 'div',
             cls: 'dashboard__user-title',
             content: user.firstName + ' ' + user.lastName,
+        },
+        {
+            tag: 'i',
+            cls: ['fa', 'fa-times'],
         }
     ],
 });
