@@ -8,7 +8,8 @@ function request({
     params = NO_PARAMS,
     headers = NO_HEADERS,
     body,
-    type = 'json',
+    responseType = 'json',
+    requestType = 'json',
     checkStatusInResponse = false,
     onSuccess = noop,
     onError = noop
@@ -24,7 +25,7 @@ function request({
         req.setRequestHeader(key, headers[key]);
     });
 
-    req.responseType = type;
+    req.responseType = responseType;
 
     req.onload = function (event) {
         const target = event.target;
@@ -48,5 +49,19 @@ function request({
         onError();
     }
 
-    req.send(body);
+    let dataBody = body;
+
+    if (requestType === 'urlencoded') {
+        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        const bodyParams = new URLSearchParams({
+            key: API_KEY,
+            lang: 'ru-ru',
+            text: dictWord.value
+        });
+
+        dataBody = bodyParams.toString();
+    }
+
+    req.send(dataBody);
 }
