@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="weather">
+    </div>
+    <script src="./lib/request.js"></script>
+    <script>
+        const APP_ID = '85ed15b3e81d7e0c16510a6160d80b94';
+        const API_BASE_URL = location.origin + '/stubs';
+
+        const weather = document.querySelector('.weather');
+
+        navigator.geolocation.getCurrentPosition((data) => {
+            const { latitude, longitude } = data.coords;
+
+            request({
+                url: `${API_BASE_URL}/weather.json`,
+                params: {
+                    lat: latitude,
+                    lon: longitude,
+                    appid: APP_ID,
+                },
+                onSuccess: (data) => {
+                    weather.textContent = data.weather[0].description;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
