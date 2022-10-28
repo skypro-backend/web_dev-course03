@@ -1,5 +1,5 @@
 {
-  "name": "lesson16",
+  "name": "video07alt",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@kodie/colorfield": "^0.1.0",
-    "jquery": "3.6.0",
-    "maska": "1.5.0",
-    "notyf": "3.10.0",
-    "pickerjs": "1.2.1",
-    "slim-select": "1.27.1",
-    "sweetalert2": "11.4.9",
-    "tiny-slider": "2.9.4",
-    "vanillajs-datepicker": "1.2.0"
+    "chess.js": "0.13.1",
+    "cm-chessboard": "5.2.4"
   }
 }
