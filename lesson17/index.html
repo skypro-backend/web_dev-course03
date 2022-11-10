@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/cm-chessboard/assets/styles/cm-chessboard.css">
+</head>
+
+<body>
+    <div class="board"></div>
+    <script type="module">
+        import { Chess } from './node_modules/chess.js/chess.js';
+        import { INPUT_EVENT_TYPE, COLOR, Chessboard, MARKER_TYPE } from "./node_modules/cm-chessboard/src/cm-chessboard/Chessboard.js"
+
+        const chess = new Chess();
+
+        window.chess = chess;
+
+        function inputHandler(event) {
+            console.log("event", event)
+            event.chessboard.removeMarkers(MARKER_TYPE.dot)
+            if (event.type === INPUT_EVENT_TYPE.moveInputStarted) {
+                const moves = chess.moves({ square: event.square, verbose: true });
+                for (const move of moves) { // draw dots on possible squares
+                    event.chessboard.addMarker(MARKER_TYPE.dot, move.to)
+                }
+                return moves.length > 0
+            } else if (event.type === INPUT_EVENT_TYPE.validateMoveInput) {
+                const move = { from: event.squareFrom, to: event.squareTo }
+                const result = chess.move(move)
+                if (result) {
+                    event.chessboard.disableMoveInput()
+                    this.chessboard.state.moveInputProcess.then(() => { // wait for the move input process has finished
+                        this.chessboard.setPosition(chess.fen(), true).then(() => { // update position, maybe castled and wait for animation has finished
+                            const possibleMoves = chess.moves({ verbose: true })
+                            if (possibleMoves.length > 0) {
+                                const randomIndex = Math.floor(Math.random() * possibleMoves.length)
+                                const randomMove = possibleMoves[randomIndex]
+                                setTimeout(() => { // smoother with 500ms delay
+                                    chess.move({ from: randomMove.from, to: randomMove.to })
+                                    event.chessboard.enableMoveInput(inputHandler, COLOR.white)
+                                    event.chessboard.setPosition(chess.fen(), true)
+                                }, 500)
+                            }
+                        })
+                    })
+                } else {
+                    console.warn("invalid move", move)
+                }
+                return result
+            }
+        }
+
+        const chessboard = new Chessboard(document.querySelector('.board'),
+            {
+                position: chess.fen(),
+                sprite: {
+                    url: "./node_modules/cm-chessboard/assets/images/chessboard-sprite-staunty.svg", // pieces and markers are stored in a sprite file
+                    size: 40, // the sprite tiles size, defaults to 40x40px
+                    cache: true, // cache the sprite
+                    orientation: COLOR.white
+                },
+            });
+
+        chessboard.enableMoveInput(inputHandler, COLOR.white)
+
+        window.chess = chess;
+        window.chessboard = chessboard;
+    </script>
+</body>
+
+</html>
